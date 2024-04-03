@@ -77,4 +77,14 @@ const addNewPost = async (req, res) => {
   }
 };
 
-module.exports = { seedPosts, getAllPosts, getUserPosts, addNewPost };
+
+const deletePost = async (req,res) => {
+  try{
+    await PostsModel.deleteOne({user_id: req.params.id})
+  } catch (error){
+    console.error(error.message)
+    res.status(400).json({status: "error", msg: "failed to delete post"})
+  }
+}
+
+module.exports = { seedPosts, getAllPosts, getUserPosts, addNewPost, deletePost };
