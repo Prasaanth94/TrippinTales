@@ -80,7 +80,7 @@ const addNewPost = async (req, res) => {
 
 const deletePost = async (req,res) => {
   try{
-    await PostsModel.deleteOne({user_id: req.params.id})
+    await PostsModel.findByIdAndDelete(req.params.id)
   } catch (error){
     console.error(error.message)
     res.status(400).json({status: "error", msg: "failed to delete post"})
