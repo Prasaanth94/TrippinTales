@@ -109,4 +109,4 @@ const updatePost = async (req, res) => {
   }
 }
 
-module.exports = { seedPosts, getAllPosts, getUserPosts, addNewPost, deletePost };
+module.exports = { seedPosts, getAllPosts, getUserPosts, addNewPost, deletePost, updatePost};
