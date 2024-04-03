@@ -1,0 +1,24 @@
+const mongoose = require("mongoose");
+
+const PostsSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, minLength: 1, maxLength: 50 },
+    content: { type: String, required: true, minLength: 1, maxLength: 500 },
+    user_id: {
+      type: String,
+      required: true,
+      // type: mongoose.Schema.Types.ObjectId,
+      // ref: "Users",
+    },
+    created_at: { type: Date, default: Date.now },
+    updated_at: { type: Date, default: Date.now },
+    url: { type: String, required: true },
+    slug: { type: String, required: true },
+    tags: { type: String, required: true },
+    images: { type: String, required: true },
+    meta_description: { type: String, required: true },
+  },
+  { collection: "posts" }
+);
+
+module.exports = mongoose.model("Posts", PostsSchema);
