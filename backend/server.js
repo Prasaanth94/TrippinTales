@@ -11,6 +11,7 @@ const roles = require("./src/routers/roles");
 
 const posts = require("./src/routers/posts");
 const users = require("./src/routers/users");
+const comments = require("./src/routers/comments");
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -33,6 +34,7 @@ app.use("/roles", roles);
 
 app.use("/api", posts);
 app.use("/api", users);
+app.use("/api", comments);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
