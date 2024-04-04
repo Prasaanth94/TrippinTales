@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const PostsSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, minLength: 1, maxLength: 50 },
-    content: { type: String, required: true, minLength: 1, maxLength: 500 },
+    content: { type: String, required: true, maxLength: 1000 },
     user_id: {
       type: String,
       required: true,
@@ -14,7 +14,7 @@ const PostsSchema = new mongoose.Schema(
     updated_at: { type: Date, default: Date.now },
     url: { type: String, required: true },
     slug: { type: String, required: true },
-    tags: { type: String, required: true },
+    tags: { type: String, required: true, maxLength: 12 },
     images: { type: String, required: true },
     meta_description: { type: String, required: true },
   },
