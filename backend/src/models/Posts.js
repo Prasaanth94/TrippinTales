@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const PostsSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, minLength: 1, maxLength: 50 },
-    content: { type: String, required: true, maxLength: 1000 },
+    content: { type: String, required: true, minLength: 1, maxLength: 1000 },
     user_id: {
       type: String,
       required: true,
