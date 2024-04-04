@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./LandingPage.module.css";
 import LoginModal from "../components/LoginModal";
 import SignupModal from "../components/SignupModal";
+import { NavLink } from "react-router-dom";
 
 const LandingPage = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -30,6 +31,7 @@ const LandingPage = () => {
             Sign Up
           </div>
         </div>
+        <NavLink to="/ProfilePage">Profilepage</NavLink>
 
         {showLoginModal && (
           <LoginModal setShowLoginModal={setShowLoginModal}></LoginModal>
