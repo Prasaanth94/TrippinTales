@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactDom from "react-dom";
 import styles from "./LoginModal.module.css";
 import useFetch from "../hooks/useFetch";
+import UserContext from "../context/user"
 
 const LoginForm = (props) => {
+  const userCtx = useContext(UserContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const fetchData = useFetch();
 
   const login = async () => {
+    try{
     const res = await fetchData("/auth/login", "POST", { email, password });
 
     if (res.ok) {
@@ -18,6 +21,7 @@ const LoginForm = (props) => {
     } else {
       alert(JSON.stringify(res.data));
     }
+  } catch (error) {console.error("login Error")}
   };
 
   return (
