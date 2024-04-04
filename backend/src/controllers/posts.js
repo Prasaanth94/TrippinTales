@@ -48,7 +48,7 @@ const getAllPosts = async (req, res) => {
 
 const getUserPosts = async (req, res) => {
   try {
-    const posts = await PostsModel.find({ user_id: req.params.id });
+    const posts = await PostsModel.find({ user_id: req.params.user_id });
     res.json(posts);
   } catch (error) {
     console.error(error.message);
@@ -77,36 +77,42 @@ const addNewPost = async (req, res) => {
   }
 };
 
-
-const deletePost = async (req,res) => {
-  try{
-    await PostsModel.findByIdAndDelete(req.params.id)
-  } catch (error){
-    console.error(error.message)
-    res.status(400).json({status: "error", msg: "failed to delete post"})
+const deletePost = async (req, res) => {
+  try {
+    await PostsModel.findByIdAndDelete(req.params.id);
+    res.json({ status: "ok", msg: "post deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "failed to delete post" });
   }
-}
-
-
+};
 
 const updatePost = async (req, res) => {
-  try{
-    const updatePost =  {};
-    if("title" in req.body) updatePost.title = req.body.title;
-    if("content" in req.body) updatePost.content= req.body.content;
-    if("user_id" in req.body) updatePost.user_id= req.body.user_id;
-    if("url" in req.body) updatePost.url= req.body.url;
-    if("slug" in req.body) updatePost.slug= req.body.slug;
-    if("tags" in req.body) updatePost.tags= req.body.tags;
-    if("images" in req.body) updatePost.images= req.body.images;
-    if("meta_description" in req.body) updatePost.meta_description= req.body.meta_description;
+  try {
+    const updatePost = {};
+    if ("title" in req.body) updatePost.title = req.body.title;
+    if ("content" in req.body) updatePost.content = req.body.content;
+    // if ("user_id" in req.body) updatePost.user_id = req.body.user_id;
+    if ("url" in req.body) updatePost.url = req.body.url;
+    if ("slug" in req.body) updatePost.slug = req.body.slug;
+    if ("tags" in req.body) updatePost.tags = req.body.tags;
+    if ("images" in req.body) updatePost.images = req.body.images;
+    if ("meta_description" in req.body)
+      updatePost.meta_description = req.body.meta_description;
 
-    await PostsModel.findByIdAndUpdate(req.params.id)
-    res.json({status: "ok", msg: "post updated", updatePost})
-  } catch(error){
-    console.error(error.message)
-    res.status(400).json({status:"error", msg: "failed to update post"})
+    await PostsModel.findByIdAndUpdate(req.params.id);
+    res.json({ status: "ok", msg: "post updated", updatePost });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "failed to update post" });
   }
-}
+};
 
-module.exports = { seedPosts, getAllPosts, getUserPosts, addNewPost, deletePost, updatePost};
+module.exports = {
+  seedPosts,
+  getAllPosts,
+  getUserPosts,
+  addNewPost,
+  deletePost,
+  updatePost,
+};
