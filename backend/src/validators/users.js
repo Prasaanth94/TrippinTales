@@ -1,4 +1,4 @@
-const { body, param } = require("express-validator");
+const { body } = require("express-validator");
 
 const validateBodyInUser = [
   body("username", "username is required").not().isEmpty(),
