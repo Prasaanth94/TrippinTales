@@ -46,7 +46,8 @@ const addCommentToPost = async (req, res) => {
 
 const deleteCommentFromPost = async (req, res) => {
   try {
-    const post = await PostsModel.findOne({ "comments._id": req.body._id });
+    const commentId = req.body._id;
+    const post = await PostsModel.findOne({ "comments._id": commentId });
 
     if (!post) {
       return res.status(404).json({
