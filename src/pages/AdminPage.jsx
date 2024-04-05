@@ -46,7 +46,8 @@ const AdminPage = () => {
 
   return (
     <div>
-      <h1>Admin Page</h1>
+      <h1 className="col-md-4">Admin Console</h1>
+
       {reportedPosts.map((item) => {
         return (
           <ReportedPost
