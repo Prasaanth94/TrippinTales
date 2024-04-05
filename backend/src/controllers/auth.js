@@ -32,6 +32,13 @@ const getAllUsers = async (req, res) => {
 
 const register = async (req, res) => {
   try {
+    const authEmail = await UsersModel.findOne({ email: req.body.email }); //finding duplicate email
+    if (authEmail) {
+      return res
+        .status(400)
+        .json({ status: "error", msg: "email already exists" });
+    }
+
     const authUsername = await UsersModel.findOne({
       username: req.body.username,
     }); //finding duplicate username
@@ -39,13 +46,6 @@ const register = async (req, res) => {
       return res
         .status(400)
         .json({ status: "error", msg: "username already exists" });
-    }
-
-    const authEmail = await UsersModel.findOne({ email: req.body.email }); //finding duplicate email
-    if (authEmail) {
-      return res
-        .status(400)
-        .json({ status: "error", msg: "email already exists" });
     }
 
     const hash = await bcrypt.hash(req.body.password, 12); //hash password

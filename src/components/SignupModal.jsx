@@ -1,79 +1,54 @@
 import React, { useRef, useState } from "react";
 import ReactDom from "react-dom";
 import styles from "./LoginModal.module.css";
+import useFetch from "../hooks/useFetch";
 
 const SignupForm = (props) => {
+  const fetchData = useFetch();
   const emailRef = useRef();
   const userNameRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [accCreated, setAccCreated] = useState(false);
-  const [accUsed, setAccUsed] = useState(false);
+  const [allFields, setAllFields] = useState(false);
+  const [passwordMatch, setPasswordsMatch] = useState(false);
+  const [error, setError] = useState("");
 
-  const signUp = async () => {
+  const register = async () => {
     const userEmailCheck = emailRef.current?.value;
     const userNameCheck = userNameRef.current?.value;
     const passwordCheck = passwordRef.current?.value;
     const passwordConfirm = passwordConfirmRef.current.value;
     setIsLoading(true);
+    setError("");
+    setPasswordsMatch(false);
     if (!userEmailCheck || !userNameCheck || !passwordCheck) {
+      setAllFields(true);
+      setIsLoading(false);
       throw new Error("Please fill in all required fields.");
     }
     if (passwordCheck != passwordConfirm) {
+      setPasswordsMatch(true);
+      setIsLoading(false);
       throw new Error("Passwords do not match");
     }
     try {
-      const checkRes = await fetch(
-        `https://api.airtable.com/v0/appX3cHFEZjVUNSSy/Table%201?filterByFormula={userEmail}='${userEmailCheck}'`,
-        {
-          headers: {
-            Authorization: `Bearer patwfhcovftvmqSAU.fefdcf5630563c885938ffef4a7ced3f5512313245041508a4f2286766d63633`,
-          },
-        }
-      );
-
-      if (!checkRes.ok) {
-        throw new Error("Failed to check if account exists!");
-      }
-
-      const data = await checkRes.json();
-
-      if (data?.records.length > 0) {
+      const res = await fetchData("/auth/register", "PUT", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+        username: userNameRef.current.value,
+      });
+      if (res.ok) {
+        setAccCreated(true);
+        setAllFields(false);
         setIsLoading(false);
-        setAccUsed(true);
-
-        return;
+      } else {
+        setError(JSON.stringify(res.data));
+        setIsLoading(false);
       }
-      const res = await fetch(
-        `https://api.airtable.com/v0/appX3cHFEZjVUNSSy/Table%201`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer patwfhcovftvmqSAU.fefdcf5630563c885938ffef4a7ced3f5512313245041508a4f2286766d63633`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            records: [
-              {
-                fields: {
-                  userEmail: emailRef.current.value,
-                  userName: userNameRef.current.value,
-                  password: passwordRef.current.value,
-                },
-              },
-            ],
-          }),
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error("Failed to sign up");
-      }
-      setIsLoading(false);
-      setAccCreated(true);
     } catch (error) {
-      console.error("There was an error!", error);
+      console.error("Error registering", error);
     }
   };
   return (
@@ -115,11 +90,13 @@ const SignupForm = (props) => {
           ></input>
         </div>
 
-        <button className={styles.LoginButton} onClick={signUp}>
+        <button className={styles.LoginButton} onClick={register}>
           SIGN UP
         </button>
         {accCreated && <div>account created</div>}
-        {accUsed && <div>This email is already in Use</div>}
+        {allFields && <div> Please Fill up all fields!</div>}
+        {passwordMatch && <div>Passwords do not match!</div>}
+        {error && <div>{error}</div>}
         {isLoading && (
           <div className={styles.ldsSpinner}>
             <div></div>

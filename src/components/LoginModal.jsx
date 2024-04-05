@@ -14,9 +14,7 @@ const LoginForm = (props) => {
   const login = async () => {
     try {
       const res = await fetchData("/auth/login", "POST", { email, password });
-      console.log(email);
-      console.log(password);
-      console.log(res);
+
       if (res.ok) {
         userCtx.setAccessToken(res.data.access);
         const decoded = jwtDecode(res.data.access);

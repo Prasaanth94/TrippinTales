@@ -4,8 +4,8 @@ const UsersSchema = new mongoose.Schema(
   {
     username: { type: String, required: true },
     hash: { type: String, required: true },
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true },
+    first_name: { type: String, default: "" },
+    last_name: { type: String, defualt: "" },
     email: { type: String, required: true },
     phone: { type: String, default: "" },
     birthdate: { type: Date, default: "" },

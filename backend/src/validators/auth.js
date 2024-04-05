@@ -7,8 +7,8 @@ const validateRegistrationData = [
     min: 8,
     max: 50,
   }),
-  body("first_name", "first name is required").not().isEmpty(),
-  body("last_name", "last name is required").not().isEmpty(),
+  // body("first_name", "first name is required").not().isEmpty(),
+  // body("last_name", "last name is required").not().isEmpty(),
   body("email", "email is required").not().isEmpty(),
   body("email", "valid email is required").isEmail(),
 ];
