@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage";
 import { Navigate, Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
 import UserContext from "./context/user";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -32,7 +33,17 @@ function App() {
           />
           <Route
             path="/ProfilePage"
-            element={isLoggedIn ? <ProfilePage /> : <Navigate to="/" />}
+            element={
+              isLoggedIn ? (
+                role === "admin" ? (
+                  <AdminPage />
+                ) : (
+                  <ProfilePage />
+                )
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
         </Routes>
       </Suspense>
