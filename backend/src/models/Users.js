@@ -5,7 +5,7 @@ const UsersSchema = new mongoose.Schema(
     username: { type: String, required: true },
     hash: { type: String, required: true },
     first_name: { type: String, default: "" },
-    last_name: { type: String, defualt: "" },
+    last_name: { type: String, default: "" },
     email: { type: String, required: true },
     phone: { type: String, default: "" },
     birthdate: { type: Date, default: "" },
@@ -14,6 +14,8 @@ const UsersSchema = new mongoose.Schema(
       enum: ["male", "female", "prefer not to say", ""],
       default: "",
     },
+    greeting: { type: String, default: "" },
+    self_description: { type: String, default: "" },
     account_status: {
       type: String,
       enum: ["active", "inactive"],

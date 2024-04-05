@@ -15,6 +15,8 @@ const getAllUsers = async (req, res) => {
         phone: temp.phone,
         birthdate: temp.birthdate,
         gender: temp.gender,
+        greeting: temp.greeting,
+        self_description: temp.self_description,
         created_at: temp.created_at,
         account_status: temp.account_status,
         role: temp.role,
@@ -47,6 +49,9 @@ const updateUser = async (req, res) => {
     if ("phone" in req.body) updateUser.phone = req.body.phone;
     if ("birthdate" in req.body) updateUser.birthdate = req.body.birthdate;
     if ("gender" in req.body) updateUser.gender = req.body.gender;
+    if ("greeting" in req.body) updateUser.greeting = req.body.greeting;
+    if ("self_description" in req.body)
+      updateUser.self_description = req.body.self_description;
 
     await UsersModel.findByIdAndUpdate(req.params.id, updateUser);
 
