@@ -1,46 +1,41 @@
-const CommentsModel = require("../models/Comments");
-
-const getAllComments = async (req, res) => {
-  try {
-    const allComments = await CommentsModel.find();
-    res.json(allComments);
-  } catch (error) {
-    console.error(error.message);
-    res.json({ status: "error", msg: "error getting all comments" });
-  }
-};
+const PostsModel = require("../models/Posts");
 
 const getCommentByPostId = async (req, res) => {
   try {
-    const comment = await CommentsModel.find({ post_id: req.body.post_id });
-    res.json(comment);
+    const post = await PostsModel.findOne({ comments: req.params.post_id });
+    res.json(post);
   } catch (error) {
     console.error(error.message);
     res.json({ status: "error", msg: "error getting comment from post" });
   }
-}; //WIP, need to figure how to link to post.. may need to use comments schema as a subcomponent for posts schema
+}; //WIP, trying to get it working
 
 const addCommentToPost = async (req, res) => {
   try {
     const postId = req.body.postId;
-    const post = await PostsModel.findById(postId);
-    const newComment = {
-      content: req.body.content,
-      postId: postId,
-    };
-    await CommentsModel.create(newComment);
+    const userId = req.body.userId;
 
-    post.comments.push(createdComment._id); //possibly push into an array then map on react?
+    const post = await PostsModel.findById(postId);
+    if (!post) {
+      return res.status(404).json({ status: "error", msg: "post not found" });
+    }
+
+    const newComment = {
+      user_id: userId,
+      post_id: postId,
+      content: req.body.content,
+    };
+
+    post.comments.push(newComment);
     await post.save();
     res.json({ status: "ok", msg: "comment added", newComment });
   } catch (error) {
     console.error(error.message);
     res.json({ status: "error", msg: "failed to add comment" });
   }
-}; //WIP
+}; //confirmed working, will be added to post -> comments
 
 module.exports = {
-  getAllComments,
   getCommentByPostId,
   addCommentToPost,
 };

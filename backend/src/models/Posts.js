@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const CommentsSchema = require("./Comments");
 
 const PostsSchema = new mongoose.Schema(
   {
@@ -17,6 +18,7 @@ const PostsSchema = new mongoose.Schema(
     tags: { type: String, required: true, maxLength: 12 },
     images: { type: String, required: true },
     meta_description: { type: String, required: true },
+    comments: [CommentsSchema], // Using the schema directly as a subdocument
   },
   { collection: "posts" }
 );
