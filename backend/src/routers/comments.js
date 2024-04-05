@@ -5,7 +5,7 @@ const {
   addCommentToPost,
 } = require("../controllers/comments");
 
-router.get("/comments/:id", getCommentByPostId);
+router.get("/comments/", getCommentByPostId);
 router.put("/add-comment", addCommentToPost);
 
 module.exports = router;

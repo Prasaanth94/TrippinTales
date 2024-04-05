@@ -2,13 +2,22 @@ const PostsModel = require("../models/Posts");
 
 const getCommentByPostId = async (req, res) => {
   try {
-    const post = await PostsModel.findOne({ comments: req.params.post_id });
-    res.json(post);
+    const postId = req.body.postId;
+
+    const post = await PostsModel.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ status: "error", msg: "Post not found" });
+    }
+
+    const comments = post.comments;
+
+    res.json(comments);
   } catch (error) {
     console.error(error.message);
-    res.json({ status: "error", msg: "error getting comment from post" });
+    res.json({ status: "error", msg: "Error getting comments from post" });
   }
-}; //WIP, trying to get it working
+};
 
 const addCommentToPost = async (req, res) => {
   try {
