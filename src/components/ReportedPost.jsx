@@ -1,25 +1,29 @@
+import { PropaneSharp } from "@mui/icons-material";
 import React from "react";
 
-const ReportedPost = () => {
+const ReportedPost = (props) => {
   return (
     <div>
       <div className="container">
         <div className="row">
-          <div className="col-md-3">[USER]</div>
-          <div className="col-md-3">[CREATED AT]</div>
+          Author: {props.userId} [to be replaced by username]
         </div>
+        <div className="row">Created at {props.createdAt.substring(0, 10)}</div>
+
+        <div className="row">Title: {props.title}</div>
+        <div className="row">Attachment: {props.images}</div>
+        <div className="row">{props.content}</div>
+        <br />
         <div className="row">
-          <div className="col-md-6">TITLE HERE</div>
+          <button
+            className="col-md-3 btn btn-danger"
+            onClick={() => props.deleteReportedPost(props.id)}
+          >
+            REMOVE POST
+          </button>
         </div>
-        <div className="row">
-          <div className="col-md-6">IMAGES HERE</div>
-        </div>
-        <div className="row">
-          <div className="col-md-6">CONTENT HERE</div>
-        </div>
-        <div className="row">
-          <button className="col-md-3">REMOVE POST</button>
-        </div>
+        <br />
+        <hr />
       </div>
     </div>
   );

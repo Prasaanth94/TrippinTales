@@ -24,6 +24,22 @@ const AdminPage = () => {
     }
   };
 
+  const deleteReportedPost = async (id) => {
+    const res = await fetchData(
+      "/api/posts/" + id,
+      "DELETE",
+      undefined,
+      userCtx.accessToken
+    );
+
+    if (res.ok) {
+      getReportedPosts();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
+    }
+  };
+
   useEffect(() => {
     getReportedPosts();
   }, []);
@@ -32,7 +48,19 @@ const AdminPage = () => {
     <div>
       <h1>Admin Page</h1>
       {reportedPosts.map((item) => {
-        return <ReportedPost></ReportedPost>;
+        return (
+          <ReportedPost
+            key={item._id}
+            id={item._id}
+            title={item.title}
+            content={item.content}
+            images={item.images}
+            userId={item.user_id}
+            createdAt={item.created_at}
+            reportedPosts={reportedPosts}
+            deleteReportedPost={deleteReportedPost}
+          />
+        );
       })}
     </div>
   );
