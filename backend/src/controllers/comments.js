@@ -35,6 +35,10 @@ const addCommentToPost = async (req, res) => {
       content: req.body.content,
     };
 
+    const commentTime = new Date();
+    commentTime.setHours(commentTime.getHours() + 8); // UTC +8
+    newComment.created_at = commentTime;
+
     post.comments.push(newComment);
     await post.save();
     res.json({ status: "ok", msg: "comment added", newComment });

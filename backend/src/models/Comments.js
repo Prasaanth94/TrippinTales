@@ -9,7 +9,12 @@ const CommentsSchema = new mongoose.Schema(
       required: true,
     },
     content: { type: String, required: true, minLength: 1, maxLength: 1000 },
-    created_at: { type: Date, default: Date.now },
+    created_at: {
+      type: Date,
+      default: () => {
+        Date.now();
+      },
+    },
   },
   { collection: "comments" }
 );
