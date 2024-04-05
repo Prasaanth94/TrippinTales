@@ -31,7 +31,6 @@ const LandingPage = (props) => {
             Sign Up
           </div>
         </div>
-        <NavLink to="/ProfilePage">Profilepage</NavLink>
 
         {showLoginModal && (
           <LoginModal setShowLoginModal={setShowLoginModal}></LoginModal>

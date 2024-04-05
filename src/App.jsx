@@ -6,6 +6,7 @@ import UserContext from "./context/user";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
+  const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
 
   const userContextValue = {
@@ -13,6 +14,8 @@ function App() {
     setAccessToken,
     role,
     setRole,
+    userId,
+    setUserId,
   };
 
   const isLoggedIn = !!accessToken;

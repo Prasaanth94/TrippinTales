@@ -1,0 +1,16 @@
+.Navbar {
+  background-color: gray;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 40px;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+}
+
+.navSearch {
+  outline: none;
+  height: 40%;
+  width: 20%;
+}

@@ -1,0 +1,34 @@
+.profileDisplay {
+  width: 100%;
+}
+
+.profileBanner {
+  width: 100%;
+  height: 300px;
+}
+
+.profilePicture {
+  position: absolute; /* Position the profile picture absolutely */
+  top: 250px; /* Adjust as needed to center vertically */
+  left: 100px; /* Place it at the center horizontally */
+  height: 300px;
+  width: 300px;
+  border: 2px solid black;
+  border-radius: 50%;
+  z-index: 1; /* Ensure it appears above the banner */
+}
+
+.usersName {
+  margin-top: 170px;
+}
+
+.profileMenu {
+  border-top: 2px solid black;
+  border-bottom: 3px solid black;
+}
+
+.menuStyle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
