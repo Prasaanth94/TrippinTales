@@ -4,7 +4,7 @@ import LoginModal from "../components/LoginModal";
 import SignupModal from "../components/SignupModal";
 import { NavLink } from "react-router-dom";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const loginModal = () => {

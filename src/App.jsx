@@ -1,21 +1,39 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import LandingPage from "./pages/LandingPage";
 import { Navigate, Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
+import UserContext from "./context/user";
 
 function App() {
+  const [accessToken, setAccessToken] = useState("");
+  const [role, setRole] = useState("");
+
+  const userContextValue = {
+    accessToken,
+    setAccessToken,
+    role,
+    setRole,
+  };
+
+  const isLoggedIn = !!accessToken;
+
   return (
-    <>
+    <UserContext.Provider value={userContextValue}>
       <Suspense fallback={<h1>Loading</h1>}>
         <Routes>
-          <Route path="/" element={<LandingPage></LandingPage>}></Route>
+          <Route
+            path="/"
+            element={
+              isLoggedIn ? <Navigate to="/ProfilePage" /> : <LandingPage />
+            }
+          />
           <Route
             path="/ProfilePage"
-            element={<ProfilePage></ProfilePage>}
-          ></Route>
+            element={isLoggedIn ? <ProfilePage /> : <Navigate to="/" />}
+          />
         </Routes>
       </Suspense>
-    </>
+    </UserContext.Provider>
   );
 }
 
