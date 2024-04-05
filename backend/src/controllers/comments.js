@@ -1,48 +1,74 @@
-const CommentsModel = require("../models/Comments");
-
-const getAllComments = async (req, res) => {
-  try {
-    const allComments = await CommentsModel.find();
-    res.json(allComments);
-  } catch (error) {
-    console.error(error.message);
-    res.json({ status: "error", msg: "error getting all comments" });
-  }
-};
+const PostsModel = require("../models/Posts");
 
 const getCommentByPostId = async (req, res) => {
   try {
-    const comment = await CommentsModel.find({ post_id: req.body.post_id });
-    res.json(comment);
+    const postId = req.body.postId;
+
+    const post = await PostsModel.findById(postId);
+
+    if (!post) {
+      return res.status(404).json({ status: "error", msg: "Post not found" });
+    }
+
+    const comments = post.comments;
+
+    res.json(comments);
   } catch (error) {
     console.error(error.message);
-    res.json({ status: "error", msg: "error getting comment from post" });
+    res.json({ status: "error", msg: "Error getting comments from post" });
   }
-}; //WIP, need to figure how to link to post.. may need to use comments schema as a subcomponent for posts schema
+};
 
 const addCommentToPost = async (req, res) => {
   try {
     const postId = req.body.postId;
-    const post = await PostsModel.findById(postId);
-    const newComment = {
-      content: req.body.content,
-      postId: postId,
-    };
-    await CommentsModel.create(newComment);
+    const userId = req.body.userId;
 
-    post.comments.push(createdComment._id); //possibly push into an array then map on react?
+    const post = await PostsModel.findById(postId);
+    if (!post) {
+      return res.status(404).json({ status: "error", msg: "post not found" });
+    }
+
+    const newComment = {
+      user_id: userId,
+      post_id: postId,
+      content: req.body.content,
+    };
+
+    post.comments.push(newComment);
     await post.save();
     res.json({ status: "ok", msg: "comment added", newComment });
   } catch (error) {
     console.error(error.message);
     res.json({ status: "error", msg: "failed to add comment" });
   }
-}; //WIP
-
-module.exports = {
-  getAllComments,
-  getCommentByPostId,
-  addCommentToPost,
 };
 
-//addCommentToPost,deleteComment
+const deleteCommentFromPost = async (req, res) => {
+  try {
+    const commentId = req.body._id;
+    const post = await PostsModel.findOne({ "comments._id": commentId });
+
+    if (!post) {
+      return res.status(404).json({
+        status: "error",
+        msg: "comment not found",
+      });
+    }
+
+    post.comments.pull(commentId);
+
+    await post.save();
+
+    res.json({ status: "ok", msg: "Comment deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "Failed to delete comment" });
+  }
+};
+
+module.exports = {
+  getCommentByPostId,
+  addCommentToPost,
+  deleteCommentFromPost,
+};
