@@ -1,5 +1,6 @@
 .profileDisplay {
   width: 100%;
+  background: rgb(239, 105, 61);
 }
 
 .profileBanner {
@@ -31,4 +32,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.createFormContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.createPostForm {
+  background-color: antiquewhite;
+  width: 80%;
+  padding: 30px 30px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+
+  box-shadow: 1px 10px 15px;
 }

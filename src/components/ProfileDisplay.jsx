@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import styles from "./ProfileDisplay.module.css";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
@@ -7,6 +7,13 @@ const ProfileDisplay = (props) => {
   const fetchData = useFetch();
   const [userdata, setUserData] = useState({});
   const [aboutMe, setAboutMe] = useState(false);
+  const [createPostForm, setCreatePostForm] = useState(false);
+  const titleRef = useRef();
+  const contentRef = useRef();
+  const urlRef = useRef();
+  const slugRef = useRef();
+  const tagsRef = useRef();
+  const meta_descriptionRef = useRef();
   const userCtx = useContext(UserContext);
 
   const getUserInfo = async () => {
@@ -28,7 +35,41 @@ const ProfileDisplay = (props) => {
       console.error(error);
     }
   };
+  const handleAboutMe = () => {
+    setCreatePostForm(false);
+    if (!aboutMe) {
+      setAboutMe(true);
+    } else if (aboutMe) {
+      setAboutMe(false);
+    }
+  };
 
+  const handleCreatePost = () => {
+    setAboutMe(false);
+    if (!createPostForm) {
+      setCreatePostForm(true);
+    } else if (createPostForm) {
+      setCreatePostForm(false);
+    }
+  };
+
+  const createPost = async () => {
+    try {
+      const res = await fetchData("/api/posts", "PUT", {
+        title: titleRef.current.value,
+        content: contentRef.current.value,
+        user_id: userId,
+        created_at: { type: Date, default: Date.now },
+        url: urlRef.current.value,
+        slug: slugRef.current.value,
+        tags: tagsRef.current.value,
+        images: "",
+        meta_description: meta_descriptionRef,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     if (props.userId) {
       getUserInfo();
@@ -60,22 +101,44 @@ const ProfileDisplay = (props) => {
 
         <div className={styles.profileMenu}>
           <div className={styles.menuStyle}>
-            <h3 onClick={() => setAboutMe(true)}>About me</h3>
+            <h3 onClick={handleAboutMe}>About me</h3>
             <h3>My tales</h3>
-            <h3>Friends</h3>
+            <h3 onClick={handleCreatePost}>Pen a Tale</h3>
           </div>
         </div>
-        {aboutMe && (
-          <div>
-            <h1>
-              {userdata.first_name} {userdata.last_name}
-            </h1>
-            <h3>{userdata.gender}</h3>
-            <h3>{userdata.birthdate}</h3>
-            <h3>{userdata.email}</h3>
-            <h3>{userdata.phone}</h3>
-          </div>
-        )}
+        <div className={`${styles.createFormContainer}`}>
+          {aboutMe && (
+            <div>
+              <h1>
+                {userdata.first_name} {userdata.last_name}
+              </h1>
+              <h3>{userdata.gender}</h3>
+              <h3>{userdata.birthdate}</h3>
+              <h3>{userdata.email}</h3>
+              <h3>{userdata.phone}</h3>
+            </div>
+          )}
+
+          {createPostForm && (
+            <div className={`container ${styles.createPostForm}`}>
+              <h2 className="text-center">Write a Tale</h2>
+              <h5>Give a title to your post :</h5>
+              <input type="text" ref={titleRef} placeholder="Title"></input>
+              <h5>Give your post a short Description</h5>
+              <textarea type="text" ref={meta_descriptionRef}></textarea>
+              <h5>Write your Post</h5>
+              <textarea type="text" ref={contentRef}></textarea>
+              <h5>Create a URL :</h5>
+              <input type="text" ref={urlRef} placeholder="url"></input>
+              <h5>Create a slug :</h5>
+              <input type="text" ref={slugRef} placeholder="slug"></input>
+              <h5>Create a few Tags :</h5>
+              <input type="text" ref={tagsRef} placeholder="Tags"></input>
+              <br />
+              <button onClick={createPost}>Submit</button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
