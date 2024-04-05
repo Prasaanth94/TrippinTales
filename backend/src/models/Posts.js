@@ -11,8 +11,18 @@ const PostsSchema = new mongoose.Schema(
       // type: mongoose.Schema.Types.ObjectId,
       // ref: "Users",
     },
-    created_at: { type: Date, default: Date.now },
-    updated_at: { type: Date, default: Date.now },
+    created_at: {
+      type: Date,
+      default: () => {
+        Date.now();
+      },
+    },
+    updated_at: {
+      type: Date,
+      default: () => {
+        Date.now();
+      },
+    },
     url: { type: String, required: true },
     slug: { type: String, required: true },
     tags: { type: String, required: true, maxLength: 12 },

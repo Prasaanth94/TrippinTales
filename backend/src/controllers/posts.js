@@ -82,6 +82,11 @@ const addNewPost = async (req, res) => {
       images: req.body.images,
       meta_description: req.body.meta_description,
     };
+
+    const postTime = new Date();
+    postTime.setHours(postTime.getHours() + 8); // UTC +8
+    newPost.created_at = postTime;
+
     await PostsModel.create(newPost);
 
     res.json({ status: "ok", msg: "post added", newPost });
@@ -114,7 +119,11 @@ const updatePost = async (req, res) => {
     if ("meta_description" in req.body)
       updatePost.meta_description = req.body.meta_description;
 
-    await PostsModel.findByIdAndUpdate(req.params.id);
+    const updateTime = new Date();
+    updateTime.setHours(updateTime.getHours() + 8); //UTC +8
+    updatePost.updated_at = updateTime;
+
+    await PostsModel.findByIdAndUpdate(req.params.id, updatePost);
     res.json({ status: "ok", msg: "post updated", updatePost });
   } catch (error) {
     console.error(error.message);
