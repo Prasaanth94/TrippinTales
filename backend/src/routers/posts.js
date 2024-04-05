@@ -10,11 +10,13 @@ const {
   updatePost,
 } = require("../controllers/posts");
 
-router.get("/posts/seed", seedPosts);
-router.get("/posts", getAllPosts);
-router.get("/:user_id/posts", getUserPosts);
-router.put("/posts", addNewPost);
-router.delete("/posts/:id", deletePost);
-router.patch("/posts/:id", updatePost);
+const { authUser, authAdmin } = require("../middleware/auth");
+
+router.get("/posts/seed", authAdmin, seedPosts);
+router.get("/posts", authAdmin, getAllPosts);
+router.get("/:user_id/posts", authUser, getUserPosts);
+router.put("/posts", authUser, addNewPost);
+router.delete("/posts/:id", authUser, deletePost);
+router.patch("/posts/:id", authUser, updatePost);
 
 module.exports = router;
