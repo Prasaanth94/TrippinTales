@@ -42,11 +42,32 @@ const addCommentToPost = async (req, res) => {
     console.error(error.message);
     res.json({ status: "error", msg: "failed to add comment" });
   }
-}; //confirmed working, will be added to post -> comments
+};
+
+const deleteCommentFromPost = async (req, res) => {
+  try {
+    const post = await PostsModel.findOne({ "comments._id": req.body._id });
+
+    if (!post) {
+      return res.status(404).json({
+        status: "error",
+        msg: "comment not found",
+      });
+    }
+
+    post.comments.pull(commentId);
+
+    await post.save();
+
+    res.json({ status: "ok", msg: "Comment deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "Failed to delete comment" });
+  }
+};
 
 module.exports = {
   getCommentByPostId,
   addCommentToPost,
+  deleteCommentFromPost,
 };
-
-//addCommentToPost,deleteComment
