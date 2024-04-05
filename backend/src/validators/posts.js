@@ -54,3 +54,10 @@ const validateUpdatePost = [
     max: 12,
   }),
 ];
+
+module.exports = {
+  validateParamIdInPost,
+  validateBodyIdInPost,
+  validateAddNewPost,
+  validateUpdatePost,
+};
