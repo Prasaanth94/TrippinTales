@@ -34,7 +34,7 @@ const validateAddNewPost = [
   // body("meta_description", "").
 ];
 
-validateUpdatePost = [
+const validateUpdatePost = [
   body(
     "title",
     "Title must have a minimum of 1 and a maximum of 50 characters"
