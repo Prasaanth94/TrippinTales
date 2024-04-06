@@ -46,7 +46,7 @@ function App() {
               )
             }
           />
-          <Route path="/post/:id" element={<PostPage />}></Route>
+          <Route path="/posts/:id" element={<PostPage />}></Route>
         </Routes>
       </Suspense>
     </UserContext.Provider>
