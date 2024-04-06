@@ -4,7 +4,7 @@ const CommentsSchema = require("./Comments");
 const PostsSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, minLength: 1, maxLength: 50 },
-    content: { type: String, required: true, minLength: 1, maxLength: 1000 },
+    content: { type: String, required: true, minLength: 1, maxLength: 5000 },
     user_id: {
       type: String,
       required: true,
@@ -29,7 +29,12 @@ const PostsSchema = new mongoose.Schema(
     slug: { type: String, default: "" },
     tags: { type: String, default: "", maxLength: 12 },
     images: { type: String, default: "" },
-    meta_description: { type: String, required: true },
+    meta_description: {
+      type: String,
+      required: true,
+      minLength: 2,
+      maxLength: 200,
+    },
     comments: [CommentsSchema], // Using the schema directly as a subdocument
   },
   { collection: "posts" }

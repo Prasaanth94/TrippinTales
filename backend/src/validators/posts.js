@@ -20,12 +20,12 @@ const validateBodyInPost = [
   }),
   body(
     "content",
-    "Content may only have a minimum of 1 and a maximum of 1000 characters"
+    "Content may only have a minimum of 1 and a maximum of 5000 characters"
   )
     .optional()
     .isLength({
       min: 1,
-      max: 1000,
+      max: 5000,
     }),
   body("url", "Url is invalid").isURL(),
   body(
@@ -43,10 +43,8 @@ const validateBodyInPost = [
   body("images", "Please provide image address").optional().isURL(), //if using URL
   body(
     "meta_description",
-    "meta_description may only have a maximum of 200 characters"
-  )
-    .optional()
-    .isLength({ max: 200 }),
+    "meta_description may only have a minimum of 2 and maximum of 200 characters"
+  ).isLength({ min: 2, max: 200 }),
 ];
 
 module.exports = {
