@@ -62,4 +62,19 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUserById, updateUser };
+const getUserByUsername = async (req, res) => {
+  try {
+    const partialUsername = new RegExp(req.body.username, "i"); // partial match, case-insensitive
+    const users = await UsersModel.find({
+      username: { $regex: partialUsername },
+    });
+    if (username === "[]") {
+      return console.error(error.message);
+    } // if no such user, return error message instead of empty array
+    res.json({ users });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "No users found" });
+  }
+};
+module.exports = { getAllUsers, getUserById, updateUser, getUserByUsername };
