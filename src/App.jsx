@@ -4,6 +4,7 @@ import { Navigate, Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
 import UserContext from "./context/user";
 import AdminPage from "./pages/AdminPage";
+import PostPage from "./pages/PostPage";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -45,6 +46,7 @@ function App() {
               )
             }
           />
+          <Route path="/post/id" element={<PostPage />}></Route>
         </Routes>
       </Suspense>
     </UserContext.Provider>
