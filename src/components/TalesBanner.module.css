@@ -6,3 +6,12 @@
   background-color: bisque;
   box-shadow: 2px 2px 2px;
 }
+
+.postBanner:hover {
+  transform: scale(1.02);
+}
+
+.textLink {
+  color: inherit;
+  text-decoration: inherit;
+}
