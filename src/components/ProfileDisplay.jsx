@@ -2,11 +2,13 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import styles from "./ProfileDisplay.module.css";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import TalesBanner from "./TalesBanner";
 
 const ProfileDisplay = (props) => {
   const fetchData = useFetch();
   const [userdata, setUserData] = useState({});
   const [aboutMe, setAboutMe] = useState(false);
+  const [allTales, setAllTales] = useState(true);
   const [createPostForm, setCreatePostForm] = useState(false);
   const titleRef = useRef();
   const contentRef = useRef();
@@ -37,6 +39,7 @@ const ProfileDisplay = (props) => {
   };
   const handleAboutMe = () => {
     setCreatePostForm(false);
+    setAllTales(false);
     if (!aboutMe) {
       setAboutMe(true);
     } else if (aboutMe) {
@@ -46,10 +49,21 @@ const ProfileDisplay = (props) => {
 
   const handleCreatePost = () => {
     setAboutMe(false);
+    setAllTales(false);
     if (!createPostForm) {
       setCreatePostForm(true);
     } else if (createPostForm) {
       setCreatePostForm(false);
+    }
+  };
+
+  const handleTales = () => {
+    setAboutMe(false);
+    setCreatePostForm(false);
+    if (!allTales) {
+      setAllTales(true);
+    } else if (allTales) {
+      setAllTales(false);
     }
   };
 
@@ -102,7 +116,7 @@ const ProfileDisplay = (props) => {
         <div className={styles.profileMenu}>
           <div className={styles.menuStyle}>
             <h3 onClick={handleAboutMe}>About me</h3>
-            <h3>My tales</h3>
+            <h3 onClick={handleTales}>My tales</h3>
             <h3 onClick={handleCreatePost}>Pen a Tale</h3>
           </div>
         </div>
@@ -138,6 +152,7 @@ const ProfileDisplay = (props) => {
               <button onClick={createPost}>Submit</button>
             </div>
           )}
+          {allTales && <TalesBanner></TalesBanner>}
         </div>
       </div>
     </div>
