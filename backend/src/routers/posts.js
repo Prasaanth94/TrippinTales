@@ -5,6 +5,7 @@ const {
   seedPosts,
   getAllPosts,
   getUserPosts,
+  getPostById,
   addNewPost,
   deletePost,
   updatePost,
@@ -17,6 +18,7 @@ const { errorCheck } = require("../validators/errorCheck");
 router.get("/posts/seed", authAdmin, seedPosts);
 router.get("/posts", authAdmin, getAllPosts);
 router.get("/:user_id/posts", authUser, getUserPosts);
+router.get("/posts/:id", getPostById);
 router.put("/posts", authUser, validateBodyInPost, errorCheck, addNewPost);
 router.delete("/posts/:id", authUser, deletePost);
 router.patch("/posts/:id", authUser, updatePost);

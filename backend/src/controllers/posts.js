@@ -70,6 +70,16 @@ const getUserPosts = async (req, res) => {
   }
 };
 
+const getPostById = async (req, res) => {
+  try {
+    const post = await PostsModel.findById(req.params.id);
+    res.json(post);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "error getting post" });
+  }
+};
+
 const addNewPost = async (req, res) => {
   try {
     const newPost = {
@@ -135,6 +145,7 @@ module.exports = {
   seedPosts,
   getAllPosts,
   getUserPosts,
+  getPostById,
   addNewPost,
   deletePost,
   updatePost,
