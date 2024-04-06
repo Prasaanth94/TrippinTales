@@ -10,6 +10,7 @@ import styles from "./PostPage.module.css";
 const PostPage = () => {
   const userCtx = useContext(UserContext);
   const [postDetail, setPostDetail] = useState([]);
+  const [username, setUsername] = useState("");
   const fetchData = useFetch();
   const { id } = useParams();
 
@@ -25,8 +26,23 @@ const PostPage = () => {
     console.log(res.data);
     if (res.ok) {
       setPostDetail(res.data);
+      fetchUsername(res.data.user_id);
     } else {
       alert(JSON.stringify(res.data));
+    }
+  };
+
+  const fetchUsername = async (userId) => {
+    const userRes = await fetchData(
+      `/api/users/${userId}`,
+      "GET",
+      undefined,
+      userCtx.accessToken
+    );
+    if (userRes.ok) {
+      setUsername(userRes.data.username);
+    } else {
+      alert("Failed to fetch username");
     }
   };
 
@@ -67,7 +83,7 @@ const PostPage = () => {
         <div className="container content">
           <h1>{postDetail.title}</h1>
           <div className="row">
-            <div className="col-md-6">By {postDetail.user_id}</div>
+            <div className="col-md-6">By {username}</div>
             <div className="col-md-6">{postDetail.created_at}</div>
           </div>
           <br />
