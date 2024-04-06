@@ -22,25 +22,27 @@ const validateBodyInPost = [
     "content",
     "Content may only have a minimum of 1 and a maximum of 5000 characters"
   )
-    .optional()
+    .optional({ checkFalsy: true })
     .isLength({
       min: 1,
       max: 5000,
-    }),
-  body("url", "Url is invalid").isURL(),
+    }), // checkFalsy to allow falsy values to pass validation.
+  body("url", "Url is invalid").optional({ checkFalsy: true }).isURL(),
   body(
     "slug",
     "Slugs should be in alphanumeric characters, optionally hyphens and underscores"
   )
-    .optional()
+    .optional({ checkFalsy: true })
     .matches(/^[a-z0-9_-]+$/), //alphanumeric + underscore + hyphens
   body(
     "tags",
     "Tags should be in alphaumeric characters, and optionally hyphens only"
   )
-    .optional()
+    .optional({ checkFalsy: true })
     .matches(/^[\w-]+(?:,[\w-]+)*$/), //alphanumeric + hyphens only
-  body("images", "Please provide image address").optional().isURL(), //if using URL
+  body("images", "Please provide image address")
+    .optional({ checkFalsy: true })
+    .isURL(), //if using URL
   body(
     "meta_description",
     "meta_description may only have a minimum of 2 and maximum of 200 characters"

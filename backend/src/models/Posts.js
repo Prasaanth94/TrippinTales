@@ -25,9 +25,9 @@ const PostsSchema = new mongoose.Schema(
         Date.now();
       },
     },
-    url: { type: String, defualt: "" },
-    slug: { type: String, default: "" },
-    tags: { type: String, default: "", maxLength: 12 },
+    url: { type: String, required: false },
+    slug: { type: String, required: false },
+    tags: { type: String, maxLength: 12, required: false },
     images: { type: String, default: "" },
     meta_description: {
       type: String,
