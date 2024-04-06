@@ -1,0 +1,8 @@
+.postBanner {
+  border: 2px solid black;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background-color: bisque;
+  box-shadow: 2px 2px 2px;
+}

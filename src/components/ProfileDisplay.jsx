@@ -69,17 +69,24 @@ const ProfileDisplay = (props) => {
 
   const createPost = async () => {
     try {
-      const res = await fetchData("/api/posts", "PUT", {
-        title: titleRef.current.value,
-        content: contentRef.current.value,
-        user_id: userId,
-        created_at: { type: Date, default: Date.now },
-        url: urlRef.current.value,
-        slug: slugRef.current.value,
-        tags: tagsRef.current.value,
-        images: "",
-        meta_description: meta_descriptionRef,
-      });
+      const res = await fetchData(
+        "/api/posts",
+        "PUT",
+        {
+          title: titleRef.current.value,
+          content: contentRef.current.value,
+          user_id: userCtx.userId,
+          created_at: { type: Date, default: Date.now },
+          url: urlRef.current.value,
+          slug: slugRef.current.value,
+          tags: tagsRef.current.value,
+          meta_description: meta_descriptionRef.current.value,
+        },
+        userCtx.accessToken
+      );
+      if (!res.ok) {
+        console.log(res);
+      }
     } catch (error) {
       console.error(error);
     }

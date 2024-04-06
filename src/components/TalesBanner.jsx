@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import styles from "./TalesBanner.module.css";
 
 const TalesBanner = () => {
   const fetchData = useFetch();
@@ -37,7 +38,7 @@ const TalesBanner = () => {
     <div>
       {posts.map((item) => {
         return (
-          <div>
+          <div className={styles.postBanner}>
             <h1>{item.title}</h1>
             <p>{item.meta_description}</p>
           </div>
