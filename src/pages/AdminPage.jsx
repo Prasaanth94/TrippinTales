@@ -6,6 +6,7 @@ import ReportedPost from "../components/ReportedPost";
 const AdminPage = () => {
   const userCtx = useContext(UserContext);
   const [reportedPosts, setReportedPosts] = useState([]);
+  const [usernames, setUsernames] = useState({});
   const fetchData = useFetch();
 
   const getReportedPosts = async () => {
@@ -18,6 +19,7 @@ const AdminPage = () => {
 
     if (res.ok) {
       setReportedPosts(res.data);
+      fetchUsernames(res.data);
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
@@ -40,6 +42,29 @@ const AdminPage = () => {
     }
   };
 
+  const fetchUsernames = async (posts) => {
+    const userIds = posts.map((post) => post.user_id);
+    const uniqueUserIds = [...new Set(userIds)]; // Remove duplicate user IDs
+    const usernameMap = {};
+
+    for (const userId of uniqueUserIds) {
+      const userRes = await fetchData(
+        `/api/users/${userId}`, // Assuming this is the endpoint to fetch user details by ID
+        "GET",
+        undefined,
+        userCtx.accessToken
+      );
+
+      if (userRes.ok) {
+        usernameMap[userId] = userRes.data.username;
+      } else {
+        console.error(`Failed to fetch username for user ID: ${userId}`);
+      }
+    }
+
+    setUsernames(usernameMap);
+  };
+
   useEffect(() => {
     getReportedPosts();
   }, []);
@@ -57,6 +82,7 @@ const AdminPage = () => {
             content={item.content}
             images={item.images}
             userId={item.user_id}
+            username={usernames[item.user_id]}
             createdAt={item.created_at}
             reportedPosts={reportedPosts}
             deleteReportedPost={deleteReportedPost}

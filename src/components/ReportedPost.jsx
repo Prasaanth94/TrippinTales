@@ -18,7 +18,7 @@ const ReportedPost = (props) => {
                 color="text.secondary"
                 className="col-md-6"
               >
-                Author: {props.userId} [to be replaced by username]
+                By {props.username}
               </Typography>
 
               <Typography
@@ -31,9 +31,9 @@ const ReportedPost = (props) => {
             </div>
           </div>
           <div className="container">
-            <CardMedia height="500" image="../public/dp.jpeg">
+            {/* <CardMedia height="500" image="../public/dp.jpeg">
               IMAGE ATTACHMENT HERE: {props.images}
-            </CardMedia>
+            </CardMedia> */}
           </div>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
