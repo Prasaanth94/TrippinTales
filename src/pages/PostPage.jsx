@@ -15,7 +15,8 @@ const PostPage = () => {
         <Navbar></Navbar>
         <SideBarMenu></SideBarMenu>
         <div className={styles.postPage}>
-          <PostDisplay></PostDisplay>
+          <PostDisplay postId={userCtx.postId}></PostDisplay>
+          <hr />
           <CommentDisplay></CommentDisplay>
         </div>
       </div>
