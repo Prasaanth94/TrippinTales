@@ -49,6 +49,22 @@ const PostPage = () => {
     }
   };
 
+  const deletePost = async () => {
+    const res = await fetchData(
+      `/api/posts/${id}`,
+      "DELETE",
+      undefined,
+      userCtx.accessToken
+    );
+
+    if (res.ok) {
+      alert("Post Deleted but need to redirect back to Profile Page");
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
+    }
+  };
+
   useEffect(() => {
     getPostById();
   }, [id]);
@@ -66,11 +82,13 @@ const PostPage = () => {
             <div className="col-md-1">{username}</div>
             <div className="col-md-4">Posted on {postDetail.created_at}</div>
           </div>
-          <br />
-          <img
-            src="https://images.unsplash.com/photo-1612278675615-7b093b07772d?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            className={styles.postImage}
-          />
+          <div className={styles.managepost}>
+            <button className="col-md-2 btn btn-secondary">edit post</button>
+            <button className="col-md-2 btn btn-danger" onClick={deletePost}>
+              delete post
+            </button>
+          </div>
+          <img src={postDetail.images} className={styles.postImage} />
 
           <div className={styles.content}>{postDetail.content}</div>
         </div>

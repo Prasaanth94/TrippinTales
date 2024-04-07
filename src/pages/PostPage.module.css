@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.managepost button {
+  margin: 30px;
+}
+
 .postImage {
   width: 60%;
 }
