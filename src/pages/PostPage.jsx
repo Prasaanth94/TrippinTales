@@ -50,6 +50,12 @@ const PostPage = () => {
   };
 
   const deletePost = async () => {
+    const confirmDelete = confirm("Are you sure you want to delete this post?");
+
+    if (!confirmDelete) {
+      return; // Do nothing if user cancels
+    }
+
     const res = await fetchData(
       `/api/posts/${id}`,
       "DELETE",
@@ -58,7 +64,8 @@ const PostPage = () => {
     );
 
     if (res.ok) {
-      alert("Post Deleted but need to redirect back to Profile Page");
+      alert("Post deleted");
+      window.location.href = "/ProfilePage";
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
