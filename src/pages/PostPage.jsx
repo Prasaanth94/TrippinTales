@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import SideBarMenu from "../components/SideBarMenu";
 import CommentDisplay from "../components/CommentDisplay";
+import UpdatePostModal from "../components/UpdatePostModal";
 
 import styles from "./PostPage.module.css";
 import Avatar from "@mui/material/Avatar";
@@ -14,9 +15,10 @@ const PostPage = () => {
   const userCtx = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [postDetail, setPostDetail] = useState([]);
+  const [showPostUpdateModal, setShowPostUpdateModal] = useState(false);
+
   const fetchData = useFetch();
   const { id } = useParams();
-
   const commentRef = useRef();
 
   const fetchUsername = async (userId) => {
@@ -78,6 +80,19 @@ const PostPage = () => {
 
   return (
     <>
+      {showPostUpdateModal && (
+        <UpdatePostModal
+          id={postDetail._id}
+          title={postDetail.title}
+          content={postDetail.content}
+          tags={postDetail.tags}
+          images={postDetail.images}
+          metaDescription={postDetail.meta_description}
+          getPostById={getPostById}
+          setShowPostUpdateModal={setShowPostUpdateModal}
+        />
+      )}
+
       <div className={styles.postPage}>
         <Navbar></Navbar>
         <SideBarMenu></SideBarMenu>
@@ -90,7 +105,12 @@ const PostPage = () => {
             <div className="col-md-4">Posted on {postDetail.created_at}</div>
           </div>
           <div className={styles.managepost}>
-            <button className="col-md-2 btn btn-secondary">edit post</button>
+            <button
+              className="col-md-2 btn btn-secondary"
+              onClick={() => setShowPostUpdateModal(true)}
+            >
+              edit post
+            </button>
             <button className="col-md-2 btn btn-danger" onClick={deletePost}>
               delete post
             </button>
