@@ -12,12 +12,26 @@ import Avatar from "@mui/material/Avatar";
 
 const PostPage = () => {
   const userCtx = useContext(UserContext);
-  const [postDetail, setPostDetail] = useState([]);
   const [username, setUsername] = useState("");
+  const [postDetail, setPostDetail] = useState([]);
   const fetchData = useFetch();
   const { id } = useParams();
 
   const commentRef = useRef();
+
+  const fetchUsername = async (userId) => {
+    const userRes = await fetchData(
+      `/api/users/${userId}`,
+      "GET",
+      undefined,
+      userCtx.accessToken
+    );
+    if (userRes.ok) {
+      setUsername(userRes.data.username);
+    } else {
+      alert("Failed to fetch username");
+    }
+  };
 
   const getPostById = async () => {
     const res = await fetchData(
@@ -35,48 +49,9 @@ const PostPage = () => {
     }
   };
 
-  const fetchUsername = async (userId) => {
-    const userRes = await fetchData(
-      `/api/users/${userId}`,
-      "GET",
-      undefined,
-      userCtx.accessToken
-    );
-    if (userRes.ok) {
-      setUsername(userRes.data.username);
-    } else {
-      alert("Failed to fetch username");
-    }
-  };
-
-  // WIP
-  const addCommentToPost = async () => {
-    console.log(userCtx.userId); //WIP
-    const res = await fetchData(
-      "/api/add-comment",
-      "PUT",
-      {
-        userId: userCtx.userId,
-        postId: "660796b6e056e5bbc485eef5",
-        content: commentRef.current.value,
-      },
-      userCtx.accessToken
-    );
-
-    if (res.ok) {
-      getPostById();
-    } else {
-      alert(JSON.stringify(res.data));
-      console.log(res.data);
-    }
-  };
-
   useEffect(() => {
     getPostById();
   }, [id]);
-
-  console.log("postDetail:", postDetail);
-  console.log("postDetail.comments:", postDetail && postDetail.comments);
 
   return (
     <>
@@ -111,17 +86,14 @@ const PostPage = () => {
                   userId={comment.user_id}
                   comment={comment.content}
                   createdAt={comment.created_at}
-                  addCommentToPost={addCommentToPost}
-                >
-                  {/* <strong>{comment.user_id}: </strong> {comment.content} */}
-                </CommentDisplay>
+                ></CommentDisplay>
               ))}
             </div>
           ) : (
             <div>No comments found.</div>
           )}
           <input placeholder="Leave a comment (WIP)" ref={commentRef}></input>
-          <button onClick={() => alert("comment sent")}>send</button>
+          <button>send</button>
           <br />
           <br />
         </div>
