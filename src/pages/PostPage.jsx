@@ -129,6 +129,7 @@ const PostPage = () => {
                   key={index}
                   id={index}
                   userId={comment.user_id}
+                  username={username}
                   comment={comment.content}
                   createdAt={comment.created_at}
                 ></CommentDisplay>

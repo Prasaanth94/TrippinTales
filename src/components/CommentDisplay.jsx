@@ -9,7 +9,7 @@ const CommentDisplay = (props) => {
       <div className="container">
         <div className={styles.comment}>
           <Avatar alt="" src="/static/images/avatar/1.jpg" />
-          <strong>{props.userId} </strong>
+          <strong>{props.username} </strong>
           {props.comment}
         </div>
       </div>

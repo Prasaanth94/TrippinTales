@@ -10,6 +10,7 @@ const ProfileDisplay = (props) => {
   const [aboutMe, setAboutMe] = useState(false);
   const [allTales, setAllTales] = useState(true);
   const [createPostForm, setCreatePostForm] = useState(false);
+  const [error, setError] = useState("");
   const titleRef = useRef();
   const contentRef = useRef();
   const urlRef = useRef();
@@ -19,6 +20,7 @@ const ProfileDisplay = (props) => {
   const userCtx = useContext(UserContext);
 
   const getUserInfo = async () => {
+    setError("");
     console.log(props.userId);
     try {
       const res = await fetchData(
@@ -84,8 +86,13 @@ const ProfileDisplay = (props) => {
         },
         userCtx.accessToken
       );
+
       if (!res.ok) {
-        console.log(res);
+        setError(res.data);
+        console.log(error);
+      } else {
+        setCreatePostForm(false);
+        setAllTales(true);
       }
     } catch (error) {
       console.error(error);
@@ -155,11 +162,16 @@ const ProfileDisplay = (props) => {
               <input type="text" ref={slugRef} placeholder="slug"></input>
               <h5>Create a few Tags :</h5>
               <input type="text" ref={tagsRef} placeholder="Tags"></input>
+              {error && <div>{error}</div>}
               <br />
               <button onClick={createPost}>Submit</button>
             </div>
           )}
-          {allTales && <TalesBanner></TalesBanner>}
+          {allTales && (
+            <div>
+              <TalesBanner></TalesBanner>
+            </div>
+          )}
         </div>
       </div>
     </div>

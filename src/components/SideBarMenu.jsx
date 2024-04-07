@@ -12,6 +12,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import styles from "./SideBarMenu.module.css";
+import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -22,7 +23,7 @@ export default function TemporaryDrawer() {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <List>
+      {/* <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
@@ -33,6 +34,26 @@ export default function TemporaryDrawer() {
             </ListItemButton>
           </ListItem>
         ))}
+      </List> */}
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Mail"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/ProfilePage">
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Profile Page"} />
+          </ListItemButton>
+        </ListItem>
       </List>
       <Divider />
       <List>

@@ -3,7 +3,7 @@
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 20px;
-  background-color: bisque;
+  background-color: rgb(240, 246, 198);
   box-shadow: 2px 2px 2px;
 }
 
@@ -15,3 +15,20 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+/* .postContainer {
+  position: relative; 
+
+}
+.deleteButton {
+  position: absolute; 
+  top: 70px; 
+  right: 10px; 
+  background-color: tomato;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+} */

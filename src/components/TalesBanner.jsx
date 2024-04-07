@@ -32,9 +32,27 @@ const TalesBanner = () => {
     }
   };
 
+  const deleteTale = async (id) => {
+    try {
+      const res = await fetchData(
+        "/api/posts/" + id,
+        "DELETE",
+        undefined,
+        userCtx.accessToken
+      );
+      if (res.ok) {
+        getTales();
+      } else {
+        alert(res.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     getTales();
   }, [userCtx.userId]);
+
   return (
     <div>
       {posts.map((item) => {
@@ -44,6 +62,18 @@ const TalesBanner = () => {
               <h1>{item.title}</h1>
               <p>{item.meta_description}</p>
             </Link>
+            {/* =======
+          <div className={styles.postContainer}>
+            <div className={styles.postBanner}>
+              <h1>{item.title}</h1>
+              <p>{item.meta_description}</p>
+            </div>
+            <button
+              className={styles.deleteButton}
+              onClick={() => deleteTale(item._id)}
+            >
+              Delete
+            </button> */}
           </div>
         );
       })}

@@ -20,6 +20,7 @@ function App() {
     setUserId,
   };
 
+  //converting accessToken value to a boolean to see if user is logged in
   const isLoggedIn = !!accessToken;
 
   return (

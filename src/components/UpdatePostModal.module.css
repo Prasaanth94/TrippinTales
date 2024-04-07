@@ -16,7 +16,7 @@
   left: 10%;
   width: 80%;
   z-index: 100;
-  overflow: hidden;
+  overflow-y: scroll;
   border-radius: 10px;
 }
 
