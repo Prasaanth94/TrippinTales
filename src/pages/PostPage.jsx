@@ -109,10 +109,10 @@ const PostPage = () => {
               className="col-md-2 btn btn-secondary"
               onClick={() => setShowPostUpdateModal(true)}
             >
-              edit post
+              Edit
             </button>
             <button className="col-md-2 btn btn-danger" onClick={deletePost}>
-              delete post
+              Delete
             </button>
           </div>
           <img src={postDetail.images} className={styles.postImage} />

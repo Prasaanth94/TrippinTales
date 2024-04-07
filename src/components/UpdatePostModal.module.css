@@ -11,10 +11,24 @@
 .modal {
   position: fixed;
   background: white;
-  top: 30vh;
-  bottom: 40vh;
+  top: 10vh;
+  bottom: 10vh;
   left: 10%;
   width: 80%;
   z-index: 100;
   overflow: hidden;
+  border-radius: 10px;
+}
+
+.header {
+  text-align: center;
+  padding: 20px;
+}
+
+.body * {
+  margin: 2px;
+}
+
+.footer button {
+  margin: 5px;
 }

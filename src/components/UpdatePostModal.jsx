@@ -53,56 +53,72 @@ const OverLay = (props) => {
   return (
     <div className={styles.backdrop}>
       <div className={styles.modal}>
+        <div className={styles.header}>
+          <h4 className="modal-title">Edit Post</h4>
+        </div>
+
+        <div className={styles.body}>
+          <div className={`row ${styles.title}`}>
+            <div className="col-md-1"></div>
+            <div className="col-md-3">Title</div>
+            <input ref={titleRef} type="text" className="col-md-6" />
+            <div className="col-md-3"></div>
+          </div>
+
+          <div className={`row ${styles.content}`}>
+            <div className="col-md-1"></div>
+            <div className="col-md-3">Content</div>
+            <textarea
+              ref={contentRef}
+              type="text"
+              style={{ height: "250px" }}
+              wrap="soft"
+              className="col-md-6"
+            />
+            <div className="col-md-2"></div>
+          </div>
+
+          <div className={`row ${styles.tags}`}>
+            <div className="col-md-1"></div>
+            <div className="col-md-3">Tags</div>
+            <input ref={tagsRef} type="text" className="col-md-6" />
+            <div className="col-md-3"></div>
+          </div>
+          <div className={`row ${styles.images}`}>
+            <div className="col-md-1"></div>
+            <div className="col-md-3">Images</div>
+            <input ref={imagesRef} type="text" className="col-md-6" />
+            <div className="col-md-3"></div>
+          </div>
+          <div className={`row ${styles.metadescription}`}>
+            <div className="col-md-1"></div>
+            <div className="col-md-3">Meta Description</div>
+            <textarea
+              ref={metaDescriptionRef}
+              type="text"
+              className="col-md-6"
+              style={{ height: "100px" }}
+              wrap="soft"
+            />
+            <div className="col-md-3"></div>
+          </div>
+        </div>
         <br />
-        <br />
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-md-3">Title</div>
-          <input ref={titleRef} type="text" className="col-md-3" />
-          <div className="col-md-3"></div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-md-3">Content</div>
-          <input ref={contentRef} type="text" className="col-md-3" />
-          <div className="col-md-3"></div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-md-3">Tags</div>
-          <input ref={tagsRef} type="text" className="col-md-3" />
-          <div className="col-md-3"></div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-md-3">Images</div>
-          <input ref={imagesRef} type="text" className="col-md-3" />
-          <div className="col-md-3"></div>
-        </div>
-
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-md-3">Meta Description</div>
-          <input ref={metaDescriptionRef} type="text" className="col-md-3" />
-          <div className="col-md-3"></div>
-        </div>
-
-        <br />
-        <div className="row">
-          <div className="col-md-3"></div>
-          <button onClick={() => updatePost(props.id)} className="col-md-3">
-            update
-          </button>
-          <button
-            onClick={() => props.setShowPostUpdateModal(false)}
-            className="col-md-3"
-          >
-            cancel
-          </button>
-          <div className="col-md-3"></div>
+        <div className={`row ${styles.footer}`}>
+          <div className="col-md-12 d-flex justify-content-center">
+            <button
+              onClick={() => props.setShowPostUpdateModal(false)}
+              className="col-md-2 btn btn-secondary"
+            >
+              Close
+            </button>
+            <button
+              onClick={() => updatePost(props.id)}
+              className="col-md-3 btn btn-primary"
+            >
+              Save changes
+            </button>
+          </div>
         </div>
       </div>
     </div>
