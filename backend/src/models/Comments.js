@@ -9,6 +9,7 @@ const CommentsSchema = new mongoose.Schema(
       required: true,
     },
     content: { type: String, required: true, minLength: 1, maxLength: 1000 },
+    username: { type: String },
     created_at: {
       type: Date,
       default: () => {

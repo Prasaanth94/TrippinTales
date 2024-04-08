@@ -23,6 +23,7 @@ const addCommentToPost = async (req, res) => {
   try {
     const postId = req.body.postId;
     const userId = req.body.userId;
+    const username = req.body.username;
 
     const post = await PostsModel.findById(postId);
     if (!post) {
@@ -33,6 +34,7 @@ const addCommentToPost = async (req, res) => {
       user_id: userId,
       post_id: postId,
       content: req.body.content,
+      username: username,
     };
 
     const commentTime = new Date();
