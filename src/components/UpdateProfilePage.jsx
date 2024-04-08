@@ -49,6 +49,7 @@ const UpdateProfilePage = (props) => {
       } else if (res.ok) {
         setUpdateProfile(false);
         setProfile(true);
+        props.getUserInfo();
       }
     } catch (error) {
       console.error(error);

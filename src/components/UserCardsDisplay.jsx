@@ -1,15 +1,15 @@
 import React, { useRef, useState, useContext } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import { useNavigate } from "react-router-dom";
 
 const UserCardsDisplay = () => {
   const fetchData = useFetch();
   const [usersResult, setUsersResult] = useState([]);
   const [searchedUsername, setSearchedUsername] = useState(""); //for search result text
-
   const userCtx = useContext(UserContext);
-
   const usernameRef = useRef();
+  const navigate = useNavigate();
 
   const showSearchUsers = async () => {
     try {
@@ -21,6 +21,7 @@ const UserCardsDisplay = () => {
       );
       if (res.ok) {
         setUsersResult(res.data.users);
+        console.log(res.data.users);
         console.log(usersResult);
         setSearchedUsername(usernameRef.current.value);
       } else {
@@ -31,8 +32,8 @@ const UserCardsDisplay = () => {
     }
   };
 
-  const handleProfileNavi = () => {
-    history.push(`/profile/${user.username}`);
+  const handleProfileNavi = (id) => {
+    navigate(`/ProfilePage/${id}`);
   };
 
   return (
@@ -46,7 +47,7 @@ const UserCardsDisplay = () => {
       ) : (
         usersResult.map((user, index) => (
           <div key={index} className="searched-user-card">
-            <h3 onClick={handleProfileNavi}>{user.username}</h3>
+            <h3 onClick={() => handleProfileNavi(user._id)}>{user.username}</h3>
             <h5>
               {user.first_name} {user.last_name}
             </h5>

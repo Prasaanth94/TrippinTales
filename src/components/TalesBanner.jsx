@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import styles from "./TalesBanner.module.css";
 
-const TalesBanner = () => {
+const TalesBanner = (props) => {
   const fetchData = useFetch();
   const [posts, setPosts] = useState([]);
 
@@ -14,17 +14,15 @@ const TalesBanner = () => {
 
     try {
       const res = await fetchData(
-        "/api/" + userCtx.userId + "/posts",
+        "/api/" + props.dataId + "/posts",
         "GET",
         undefined,
         userCtx.accessToken
       );
       if (res.ok) {
         setPosts(res.data);
-        console.log(res.data);
       } else {
         console.log("error");
-        console.log(res);
       }
     } catch (error) {
       console.log("error met");
@@ -32,26 +30,9 @@ const TalesBanner = () => {
     }
   };
 
-  const deleteTale = async (id) => {
-    try {
-      const res = await fetchData(
-        "/api/posts/" + id,
-        "DELETE",
-        undefined,
-        userCtx.accessToken
-      );
-      if (res.ok) {
-        getTales();
-      } else {
-        alert(res.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
   useEffect(() => {
     getTales();
-  }, [userCtx.userId]);
+  }, [props.dataId]);
 
   return (
     <div>
@@ -62,18 +43,6 @@ const TalesBanner = () => {
               <h1>{item.title}</h1>
               <p>{item.meta_description}</p>
             </Link>
-            {/* =======
-          <div className={styles.postContainer}>
-            <div className={styles.postBanner}>
-              <h1>{item.title}</h1>
-              <p>{item.meta_description}</p>
-            </div>
-            <button
-              className={styles.deleteButton}
-              onClick={() => deleteTale(item._id)}
-            >
-              Delete
-            </button> */}
           </div>
         );
       })}

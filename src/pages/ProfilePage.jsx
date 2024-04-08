@@ -6,20 +6,23 @@ import ProfileDisplay from "../components/ProfileDisplay";
 import UserContext from "../context/user";
 import UpdateProfilePage from "../components/UpdateProfilePage";
 import useFetch from "../hooks/useFetch";
+import { useParams } from "react-router-dom";
 
-const ProfilePage = () => {
+const ProfilePage = ({ userId }) => {
   const fetchData = useFetch();
   const [profile, setProfile] = useState(true);
   const [updateProfile, setUpdateProfile] = useState(false);
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
   const userCtx = useContext(UserContext);
+  const { id } = useParams();
+
   const getUserInfo = async () => {
     setError("");
-    console.log(userData);
+
     try {
       const res = await fetchData(
-        "/api/users/" + userCtx.userId,
+        "/api/users/" + (id || userId),
         "GET",
         undefined,
         userCtx.Token
@@ -38,7 +41,12 @@ const ProfilePage = () => {
   useEffect(() => {
     getUserInfo();
     setProfile(true);
-  }, []);
+  }, [id, userId]);
+
+  useEffect(() => {
+    console.log(userData);
+    console.log(userData._id); // Log userData
+  }, [userData]);
 
   return (
     <>
@@ -62,6 +70,7 @@ const ProfilePage = () => {
               setProfile={setProfile}
               setUpdateProfile={setUpdateProfile}
               userData={userData}
+              getUserInfo={getUserInfo}
             ></UpdateProfilePage>
           </div>
         )}

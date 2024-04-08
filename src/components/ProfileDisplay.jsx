@@ -8,14 +8,8 @@ import moment from "moment";
 const ProfileDisplay = ({ userData }) => {
   const fetchData = useFetch();
   const { birthdate } = userData;
-
-  // Create a new Date object with the birthdate
   const birthdateMoment = moment(birthdate);
-
-  // Format the date as desired
   const formattedDate = birthdateMoment.format("MMMM DD, YYYY");
-
-  console.log(formattedDate); // Output: "12/26/2021"
   const [aboutMe, setAboutMe] = useState(false);
   const [allTales, setAllTales] = useState(true);
   const [createPostForm, setCreatePostForm] = useState(false);
@@ -29,7 +23,6 @@ const ProfileDisplay = ({ userData }) => {
   const userCtx = useContext(UserContext);
 
   const handleAboutMe = () => {
-    console.log(userData);
     setCreatePostForm(false);
     setAllTales(false);
     if (!aboutMe) {
@@ -164,7 +157,7 @@ const ProfileDisplay = ({ userData }) => {
           )}
           {allTales && (
             <div>
-              <TalesBanner></TalesBanner>
+              <TalesBanner dataId={userData._id}></TalesBanner>
             </div>
           )}
         </div>

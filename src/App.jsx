@@ -42,12 +42,16 @@ function App() {
                 role === "admin" ? (
                   <AdminPage />
                 ) : (
-                  <ProfilePage />
+                  <ProfilePage userId={userId} />
                 )
               ) : (
                 <Navigate to="/" />
               )
             }
+          />
+          <Route
+            path="/ProfilePage/:id"
+            element={isLoggedIn ? <ProfilePage /> : <Navigate to="/" />}
           />
           <Route
             path="/posts/:id"
@@ -57,9 +61,9 @@ function App() {
             path="/SearchUsersPage"
             element={isLoggedIn ? <SearchUsersPage /> : <Navigate to="/" />}
           />
-          <Route>
+          {/* <Route>
             <UserCardsDisplay user={{ username: "" }} />
-          </Route>
+          </Route> */}
         </Routes>
       </Suspense>
     </UserContext.Provider>
