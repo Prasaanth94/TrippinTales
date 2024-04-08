@@ -3,10 +3,19 @@ import styles from "./ProfileDisplay.module.css";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import TalesBanner from "./TalesBanner";
+import moment from "moment";
 
 const ProfileDisplay = ({ userData }) => {
   const fetchData = useFetch();
+  const { birthdate } = userData;
 
+  // Create a new Date object with the birthdate
+  const birthdateMoment = moment(birthdate);
+
+  // Format the date as desired
+  const formattedDate = birthdateMoment.format("MMMM DD, YYYY");
+
+  console.log(formattedDate); // Output: "12/26/2021"
   const [aboutMe, setAboutMe] = useState(false);
   const [allTales, setAllTales] = useState(true);
   const [createPostForm, setCreatePostForm] = useState(false);
@@ -118,9 +127,9 @@ const ProfileDisplay = ({ userData }) => {
                 {userData.first_name} {userData.last_name}
               </h1>
               <h3>{userData.gender}</h3>
-              <h3>{userData.birthdate}</h3>
+              <h3>{formattedDate}</h3>
               <h3>{userData.email}</h3>
-              <h3>{userData.phone}</h3>
+
               <h3>{userData.self_description}</h3>
             </div>
           )}

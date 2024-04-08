@@ -95,6 +95,9 @@ const UpdateProfilePage = (props) => {
                 selected={selectedDate}
                 onChange={handleChange}
                 dateFormat="yyyy-MM-dd" // You can adjust the date format as needed
+                showYearDropdown
+                scrollableYearDropdown
+                yearDropdownItemNumber={100}
                 placeholderText="Select a date"
               />
             </div>
