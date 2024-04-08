@@ -103,6 +103,7 @@ const PostPage = () => {
     );
     console.log(res.data);
     if (res.ok) {
+      commentRef.current.value = "";
       getPostById();
     } else {
       alert(JSON.stringify(res.data));
@@ -176,8 +177,19 @@ const PostPage = () => {
           ) : (
             <div>No comments found.</div>
           )}
-          <input placeholder="Leave a comment" ref={commentRef}></input>
-          <button onClick={addCommentToPost}>send</button>
+          <div className="container">
+            <div className={styles.comment}>
+              <Avatar alt="" src="/static/images/avatar/3.jpg" />
+              <textarea
+                class="form-control"
+                placeholder="Add your comment"
+                ref={commentRef}
+              ></textarea>
+              <button className="btn btn-primary" onClick={addCommentToPost}>
+                Post
+              </button>
+            </div>
+          </div>
           <br />
           <br />
         </div>
