@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+
 .postPage {
   width: 100%;
   height: 100%;
@@ -7,11 +12,26 @@
 .container {
   text-align: center;
   margin: 50px auto;
+  width: 80%;
 }
 
-.row {
+.container h1 {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.details {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 10px;
+  font-family: "Crimson Text", serif;
+}
+
+.details * {
+  padding: 10px;
 }
 
 .managepost button {
@@ -19,18 +39,27 @@
 }
 
 .postImage {
-  width: 60%;
+  width: 80%;
 }
 
 .content {
-  margin: 20px 100px;
+  margin: 20px auto;
   text-align: justify;
+  font-family: "Crimson Text", serif;
+  font-size: 1.1em;
 }
 
 .commentContainer {
   background: #d0d2dd90;
   border-radius: 10px;
   padding: 20px;
+  width: 80%;
+}
+
+.commentContainer h2 {
+  font-family: "Cedarville Cursive", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .comment {
@@ -39,8 +68,10 @@
   gap: 10px;
   background-color: white;
   border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
+  margin: 14px;
+  padding: 14px;
+  font-family: "Avenir Next", serif;
+  font-size: 0.9em;
 }
 
 .icon:hover {

@@ -101,11 +101,7 @@ const ProfileDisplay = ({ userData }) => {
       <div className="container">
         <h2 className={styles.usersName}>{userData.first_name}</h2>
         <div className={styles.greetings}>
-          <p>
-            When I was a young boy, my father took me into the city, to see a
-            marching band. He said, "Son, when you grow up, would you be the
-            saviour of the broken, the beaten and the damned?"
-          </p>
+          <p>{userData.greeting}</p>
         </div>
 
         <div className={styles.profileMenu}>
@@ -125,6 +121,7 @@ const ProfileDisplay = ({ userData }) => {
               <h3>{userData.birthdate}</h3>
               <h3>{userData.email}</h3>
               <h3>{userData.phone}</h3>
+              <h3>{userData.self_description}</h3>
             </div>
           )}
 

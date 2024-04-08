@@ -135,14 +135,16 @@ const PostPage = () => {
         <SideBarMenu></SideBarMenu>
         <div className={styles.container}>
           <h1>{postDetail.title}</h1>
-          <div className={styles.row}>
-            <div className="col-md-4"></div>
+
+          <div className={`col-md-12 ${styles.details}`}>
             <Avatar alt="Name" src="/static/images/avatar/1.jpg" />
-            <div className="col-md-1">{postUsername}</div>
-            <div className="col-md-4">Posted on {postDetail.created_at}</div>
+            <div>{postUsername}</div>
           </div>
 
-          {/* ONLY THE AUTHOR OF THE POST CAN EDIT / DELETE */}
+          <div className={`col-md-12 ${styles.details}`}>
+            wrote a tale on {postDetail.created_at}
+          </div>
+
           {userCtx.userId === postDetail.user_id ? (
             <div className={styles.managepost}>
               <button
@@ -197,8 +199,6 @@ const PostPage = () => {
               </button>
             </div>
           </div>
-          <br />
-          <br />
         </div>
         <br />
         <br />

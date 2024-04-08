@@ -4,7 +4,7 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   return (
     <div className={styles.Navbar}>
-      <h1>Trippin Tales</h1>
+      <h1>Trippin' Tales</h1>
       <input
         className={styles.navSearch}
         type="text"

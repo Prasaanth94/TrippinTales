@@ -13,7 +13,7 @@ const ProfilePage = () => {
   const [updateProfile, setUpdateProfile] = useState(false);
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
-
+  const userCtx = useContext(UserContext);
   const getUserInfo = async () => {
     setError("");
     console.log(userData);
@@ -39,7 +39,7 @@ const ProfilePage = () => {
     getUserInfo();
     setProfile(true);
   }, []);
-  const userCtx = useContext(UserContext);
+
   return (
     <>
       <div className={styles.profilePage}>
