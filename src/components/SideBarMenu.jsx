@@ -67,7 +67,11 @@ export default function TemporaryDrawer(props) {
       </List>
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={handleUpdateClick}>
+          <ListItemButton
+            component={Link}
+            to="/ProfilePage"
+            onClick={handleUpdateClick}
+          >
             <ListItemIcon>
               <MailIcon />
             </ListItemIcon>
