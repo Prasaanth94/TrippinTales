@@ -147,11 +147,12 @@ const PostPage = () => {
               {postDetail.comments.map((comment, index) => (
                 <CommentDisplay
                   key={index}
-                  id={index}
+                  id={comment._id}
                   userId={comment.user_id}
                   username={username}
                   comment={comment.content}
                   createdAt={comment.created_at}
+                  getPostById={getPostById}
                 ></CommentDisplay>
               ))}
             </div>
