@@ -4,9 +4,9 @@ import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import TalesBanner from "./TalesBanner";
 
-const ProfileDisplay = (props) => {
+const ProfileDisplay = ({ userData }) => {
   const fetchData = useFetch();
-  const [userdata, setUserData] = useState({});
+
   const [aboutMe, setAboutMe] = useState(false);
   const [allTales, setAllTales] = useState(true);
   const [createPostForm, setCreatePostForm] = useState(false);
@@ -19,27 +19,8 @@ const ProfileDisplay = (props) => {
   const meta_descriptionRef = useRef();
   const userCtx = useContext(UserContext);
 
-  const getUserInfo = async () => {
-    setError("");
-    console.log(props.userId);
-    try {
-      const res = await fetchData(
-        "/api/users/" + props.userId,
-        "GET",
-        undefined,
-        userCtx.Token
-      );
-      if (res.ok) {
-        setUserData(res.data);
-      } else {
-        alert(JSON.stringify(res.data));
-        console.log(res.data);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const handleAboutMe = () => {
+    console.log(userData);
     setCreatePostForm(false);
     setAllTales(false);
     if (!aboutMe) {
@@ -99,10 +80,10 @@ const ProfileDisplay = (props) => {
     }
   };
   useEffect(() => {
-    if (props.userId) {
+    if (userData.userId) {
       getUserInfo();
     }
-  }, [props.userId]);
+  }, [userData.userId]);
 
   return (
     <div className={styles.ProfileDisplay}>
@@ -118,7 +99,7 @@ const ProfileDisplay = (props) => {
         alt="profile picture"
       />
       <div className="container">
-        <h2 className={styles.usersName}>{userdata.first_name}</h2>
+        <h2 className={styles.usersName}>{userData.first_name}</h2>
         <div className={styles.greetings}>
           <p>
             When I was a young boy, my father took me into the city, to see a
@@ -138,12 +119,12 @@ const ProfileDisplay = (props) => {
           {aboutMe && (
             <div>
               <h1>
-                {userdata.first_name} {userdata.last_name}
+                {userData.first_name} {userData.last_name}
               </h1>
-              <h3>{userdata.gender}</h3>
-              <h3>{userdata.birthdate}</h3>
-              <h3>{userdata.email}</h3>
-              <h3>{userdata.phone}</h3>
+              <h3>{userData.gender}</h3>
+              <h3>{userData.birthdate}</h3>
+              <h3>{userData.email}</h3>
+              <h3>{userData.phone}</h3>
             </div>
           )}
 
@@ -153,9 +134,17 @@ const ProfileDisplay = (props) => {
               <h5>Give a title to your post :</h5>
               <input type="text" ref={titleRef} placeholder="Title"></input>
               <h5>Give your post a short Description</h5>
-              <textarea type="text" ref={meta_descriptionRef}></textarea>
+              <textarea
+                type="text"
+                ref={meta_descriptionRef}
+                style={{ height: "250px", width: "450px" }}
+              ></textarea>
               <h5>Write your Post</h5>
-              <textarea type="text" ref={contentRef}></textarea>
+              <textarea
+                type="text"
+                ref={contentRef}
+                style={{ height: "250px", width: "450px" }}
+              ></textarea>
               <h5>Create a URL :</h5>
               <input type="text" ref={urlRef} placeholder="url"></input>
               <h5>Create a slug :</h5>

@@ -14,8 +14,18 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import styles from "./SideBarMenu.module.css";
 import { Link } from "react-router-dom";
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
   const [open, setOpen] = React.useState(false);
+
+  const handleUpdateClick = () => {
+    props.setProfile(false);
+    props.setUpdateProfile(true);
+  };
+
+  const handleProfileClick = () => {
+    props.setProfile(true);
+    props.setUpdateProfile(false);
+  };
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -37,16 +47,6 @@ export default function TemporaryDrawer() {
       </List> */}
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Mail"} />
-          </ListItemButton>
-        </ListItem>
-      </List>
-      <List>
-        <ListItem disablePadding>
           <ListItemButton component={Link} to="/ProfilePage">
             <ListItemIcon>
               <MailIcon />
@@ -65,8 +65,18 @@ export default function TemporaryDrawer() {
           </ListItemButton>
         </ListItem>
       </List>
-      <Divider />
       <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={handleUpdateClick}>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Update Profile"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+      {/* <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
@@ -77,6 +87,16 @@ export default function TemporaryDrawer() {
             </ListItemButton>
           </ListItem>
         ))}
+      </List> */}
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Log Out"} />
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
