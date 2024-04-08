@@ -35,18 +35,21 @@ const UserCardsDisplay = () => {
     <div className="container">
       <input ref={usernameRef} type="text" placeholder="Enter username" />
       <button onClick={showSearchUsers}>Search</button>
-      <h1>Search Results for {searchedUsername}:</h1>
-      <br />
-      <br />
-      {usersResult.map((user, index) => (
-        <div key={index} className="searched-user-card">
-          <h3>
-            {user.first_name} {user.last_name}
-          </h3>
-          <img src={user.image} />
-          <p>{user.greeting}</p>
-        </div>
-      ))}
+      {searchedUsername && <h1>Search Results for {searchedUsername}:</h1>}
+      {!searchedUsername && <h1>Search Results</h1>}
+      {usersResult && usersResult.length === 0 ? (
+        <h1>No user found.</h1>
+      ) : (
+        usersResult.map((user, index) => (
+          <div key={index} className="searched-user-card">
+            <h3>{user.username}</h3>
+            <h5>
+              {user.first_name} {user.last_name}
+            </h5>
+            <img src={user.image} alt={`Profile of ${user.username}`} />
+          </div>
+        ))
+      )}
     </div>
   );
 };
