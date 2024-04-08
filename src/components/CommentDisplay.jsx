@@ -34,15 +34,20 @@ const CommentDisplay = (props) => {
           <Avatar alt="" src="/static/images/avatar/1.jpg" />
           <strong>{props.username}</strong>
           {props.comment}
-          <div className={styles.iconContainer}>
-            <DeleteOutlinedIcon
-              className={styles.icon}
-              color="action"
-              onClick={deleteCommentFromPost}
-            >
-              delete
-            </DeleteOutlinedIcon>
-          </div>
+
+          {userCtx.userId === props.userId ? (
+            <div className={styles.iconContainer}>
+              <DeleteOutlinedIcon
+                className={styles.icon}
+                color="action"
+                onClick={deleteCommentFromPost}
+              >
+                delete
+              </DeleteOutlinedIcon>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

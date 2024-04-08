@@ -141,17 +141,24 @@ const PostPage = () => {
             <div className="col-md-1">{postUsername}</div>
             <div className="col-md-4">Posted on {postDetail.created_at}</div>
           </div>
-          <div className={styles.managepost}>
-            <button
-              className="col-md-2 btn btn-secondary"
-              onClick={() => setShowPostUpdateModal(true)}
-            >
-              Edit
-            </button>
-            <button className="col-md-2 btn btn-danger" onClick={deletePost}>
-              Delete
-            </button>
-          </div>
+
+          {/* ONLY THE AUTHOR OF THE POST CAN EDIT / DELETE */}
+          {userCtx.userId === postDetail.user_id ? (
+            <div className={styles.managepost}>
+              <button
+                className="col-md-2 btn btn-secondary"
+                onClick={() => setShowPostUpdateModal(true)}
+              >
+                Edit
+              </button>
+              <button className="col-md-2 btn btn-danger" onClick={deletePost}>
+                Delete
+              </button>
+            </div>
+          ) : (
+            <br />
+          )}
+
           <img src={postDetail.images} className={styles.postImage} />
 
           <div className={styles.content}>{postDetail.content}</div>
