@@ -74,6 +74,26 @@ const PostPage = () => {
     }
   };
 
+  const addCommentToPost = async () => {
+    const res = await fetchData(
+      "/api/comments",
+      "PUT",
+      {
+        userId: userCtx.userId,
+        postId: id,
+        content: commentRef.current.value,
+      },
+      userCtx.accessToken //added
+    );
+    console.log(res.data);
+    if (res.ok) {
+      getPostById();
+    } else {
+      alert(JSON.stringify(res.data));
+      console.log(res.data);
+    }
+  };
+
   useEffect(() => {
     getPostById();
   }, [id]);
@@ -139,7 +159,7 @@ const PostPage = () => {
             <div>No comments found.</div>
           )}
           <input placeholder="Leave a comment (WIP)" ref={commentRef}></input>
-          <button>send</button>
+          <button onClick={addCommentToPost}>send</button>
           <br />
           <br />
         </div>
