@@ -1,10 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import useFetch from "../hooks/useFetch";
+import UserContext from "../context/user";
 
 const UserCardsDisplay = () => {
   const fetchData = useFetch();
   const [users, setUsers] = useState([]);
   const [searchedUsername, setSearchedUsername] = useState(""); //for search result text
+
+  const userCtx = useContext(UserContext);
 
   const usernameRef = useRef();
 

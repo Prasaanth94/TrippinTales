@@ -5,6 +5,7 @@ import ProfilePage from "./pages/ProfilePage";
 import UserContext from "./context/user";
 import AdminPage from "./pages/AdminPage";
 import PostPage from "./pages/PostPage";
+import SearchUsersPage from "./pages/SearchUsersPage";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -48,6 +49,7 @@ function App() {
             }
           />
           <Route path="/posts/:id" element={<PostPage />}></Route>
+          <Route path="/SearchUsersPage" element={<SearchUsersPage />}></Route>
         </Routes>
       </Suspense>
     </UserContext.Provider>

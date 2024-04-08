@@ -55,6 +55,16 @@ export default function TemporaryDrawer() {
           </ListItemButton>
         </ListItem>
       </List>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/SearchUsersPage">
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Search User"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
       <Divider />
       <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
