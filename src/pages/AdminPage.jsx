@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../context/user";
 import useFetch from "../hooks/useFetch";
 import ReportedPost from "../components/ReportedPost";
+import SideBarMenu from "../components/SideBarMenu";
 
 const AdminPage = () => {
   const userCtx = useContext(UserContext);
@@ -71,24 +72,29 @@ const AdminPage = () => {
 
   return (
     <div>
-      <h1 className="col-md-4">Admin Console</h1>
-
-      {reportedPosts.map((item) => {
-        return (
-          <ReportedPost
-            key={item._id}
-            id={item._id}
-            title={item.title}
-            content={item.content}
-            images={item.images}
-            userId={item.user_id}
-            username={usernames[item.user_id]}
-            createdAt={item.created_at}
-            reportedPosts={reportedPosts}
-            deleteReportedPost={deleteReportedPost}
-          />
-        );
-      })}
+      <SideBarMenu></SideBarMenu>
+      <br />
+      <h1 style={{ textAlign: "center" }}>Admin Console</h1>
+      <br />
+      {reportedPosts
+        .slice() // Create a shallow copy of the array to avoid mutating the original
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // Sort by createdAt in descending order
+        .map((item) => {
+          return (
+            <ReportedPost
+              key={item._id}
+              id={item._id}
+              title={item.title}
+              content={item.content}
+              images={item.images}
+              userId={item.user_id}
+              username={usernames[item.user_id]}
+              createdAt={item.created_at}
+              reportedPosts={reportedPosts}
+              deleteReportedPost={deleteReportedPost}
+            />
+          );
+        })}
     </div>
   );
 };
