@@ -13,6 +13,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import styles from "./SideBarMenu.module.css";
 import { Link } from "react-router-dom";
+import UserContext from "../context/user";
+import { useContext } from "react";
 
 export default function TemporaryDrawer(props) {
   const [open, setOpen] = React.useState(false);
@@ -29,6 +31,11 @@ export default function TemporaryDrawer(props) {
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
+  };
+
+  const handleLogOutClick = () => {
+    const userCtx = useContext(UserContext);
+    userCtx.accessToken = "";
   };
 
   const DrawerList = (
@@ -90,7 +97,7 @@ export default function TemporaryDrawer(props) {
       </List> */}
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton component={Link} to="/" onClick={handleLogOutClick}>
             <ListItemIcon>
               <MailIcon />
             </ListItemIcon>

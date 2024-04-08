@@ -48,8 +48,14 @@ function App() {
               )
             }
           />
-          <Route path="/posts/:id" element={<PostPage />}></Route>
-          <Route path="/SearchUsersPage" element={<SearchUsersPage />}></Route>
+          <Route
+            path="/posts/:id"
+            element={isLoggedIn ? <PostPage /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/SearchUsersPage"
+            element={isLoggedIn ? <SearchUsersPage /> : <Navigate to="/" />}
+          />
         </Routes>
       </Suspense>
     </UserContext.Provider>
