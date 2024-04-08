@@ -31,6 +31,10 @@ const UserCardsDisplay = () => {
     }
   };
 
+  const handleProfileNavi = () => {
+    history.push(`/profile/${user.username}`);
+  };
+
   return (
     <div className="container">
       <input ref={usernameRef} type="text" placeholder="Enter username" />
@@ -42,7 +46,7 @@ const UserCardsDisplay = () => {
       ) : (
         usersResult.map((user, index) => (
           <div key={index} className="searched-user-card">
-            <h3>{user.username}</h3>
+            <h3 onClick={handleProfileNavi}>{user.username}</h3>
             <h5>
               {user.first_name} {user.last_name}
             </h5>
@@ -55,10 +59,3 @@ const UserCardsDisplay = () => {
 };
 
 export default UserCardsDisplay;
-
-// get body by username
-
-//cards display the following:
-// name
-// user profile image -> need payload in users?
-// greeting

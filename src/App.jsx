@@ -6,6 +6,7 @@ import UserContext from "./context/user";
 import AdminPage from "./pages/AdminPage";
 import PostPage from "./pages/PostPage";
 import SearchUsersPage from "./pages/SearchUsersPage";
+import UserCardsDisplay from "./components/UserCardsDisplay";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -56,6 +57,9 @@ function App() {
             path="/SearchUsersPage"
             element={isLoggedIn ? <SearchUsersPage /> : <Navigate to="/" />}
           />
+          <Route>
+            <UserCardsDisplay user={{ username: "" }} />
+          </Route>
         </Routes>
       </Suspense>
     </UserContext.Provider>
@@ -63,3 +67,5 @@ function App() {
 }
 
 export default App;
+
+//search result username h1 -> onclick -> routes to profilepage/:id?
