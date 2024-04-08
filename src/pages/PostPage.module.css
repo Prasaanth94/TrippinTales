@@ -42,3 +42,11 @@
   margin: 20px;
   padding: 20px;
 }
+
+.icon:hover {
+  transform: scale(1.1);
+}
+
+.iconContainer {
+  margin-left: auto;
+}

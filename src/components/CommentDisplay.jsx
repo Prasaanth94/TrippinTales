@@ -3,6 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import styles from "../pages/PostPage.module.css";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 const CommentDisplay = (props) => {
   const userCtx = useContext(UserContext);
@@ -31,9 +32,17 @@ const CommentDisplay = (props) => {
       <div className="container">
         <div className={styles.comment}>
           <Avatar alt="" src="/static/images/avatar/1.jpg" />
-          <strong>{props.username} </strong>
+          <strong>{props.username}</strong>
           {props.comment}
-          <button onClick={deleteCommentFromPost}>delete</button>
+          <div className={styles.iconContainer}>
+            <DeleteOutlinedIcon
+              className={styles.icon}
+              color="action"
+              onClick={deleteCommentFromPost}
+            >
+              delete
+            </DeleteOutlinedIcon>
+          </div>
         </div>
       </div>
     </>
