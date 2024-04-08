@@ -4,7 +4,7 @@ import UserContext from "../context/user";
 
 const UserCardsDisplay = () => {
   const fetchData = useFetch();
-  const [users, setUsers] = useState([]);
+  const [usersResult, setUsersResult] = useState([]);
   const [searchedUsername, setSearchedUsername] = useState(""); //for search result text
 
   const userCtx = useContext(UserContext);
@@ -14,13 +14,14 @@ const UserCardsDisplay = () => {
   const showSearchUsers = async () => {
     try {
       const res = await fetchData(
-        "/api/users-username",
-        "GET",
-        { username: usernameRef.current.value },
+        "/api/users/" + usernameRef.current.value,
+        "POST",
+        undefined,
         userCtx.Token
       );
       if (res.ok) {
-        setUsers(res.data);
+        setUsersResult(res.data.users);
+        console.log(usersResult);
         setSearchedUsername(usernameRef.current.value);
       } else {
         alert(JSON.stringify(res.data));
@@ -37,12 +38,10 @@ const UserCardsDisplay = () => {
       <h1>Search Results for {searchedUsername}:</h1>
       <br />
       <br />
-      {users.map((user, index) => (
+      {usersResult.map((user, index) => (
         <div key={index} className="searched-user-card">
           <h3>
-            {user.first_name}
-            {""}
-            {user.last_name}
+            {user.first_name} {user.last_name}
           </h3>
           <img src={user.image} />
           <p>{user.greeting}</p>

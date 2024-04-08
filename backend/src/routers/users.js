@@ -5,7 +5,7 @@ const {
   getAllUsers,
   getUserById,
   updateUser,
-  getUserByUsername,
+  getUserByUsernameParams,
 } = require("../controllers/users");
 const { validateBodyInUser } = require("../validators/users");
 const { errorCheck } = require("../validators/errorCheck");
@@ -13,6 +13,6 @@ const { errorCheck } = require("../validators/errorCheck");
 router.get("/users", getAllUsers);
 router.get("/users/:id", getUserById);
 router.patch("/users/:id", validateBodyInUser, errorCheck, updateUser);
-router.get("/users-username", getUserByUsername);
+router.post("/users/:username", getUserByUsernameParams);
 
 module.exports = router;
