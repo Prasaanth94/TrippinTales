@@ -79,8 +79,10 @@ const login = async (req, res) => {
     }
 
     const claims = {
+      //include emai, role,and _id into the decoded to use(eg used when want to follow a user)
       email: auth.email,
       role: auth.role,
+      loggedInId: auth._id,
     };
 
     const access = jwt.sign(claims, process.env.ACCESS_SECRET, {

@@ -12,7 +12,7 @@ const authUser = (req, res, next) => {
       req.decoded = decoded;
       next();
     } catch (error) {
-      console.error(error.message);
+      console.error("Token verification error: ", error.message);
       return res.status(401).json({ status: "error", msg: "unauthorized" });
     }
   } else {

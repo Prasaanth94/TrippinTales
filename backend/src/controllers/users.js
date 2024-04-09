@@ -94,26 +94,22 @@ const getUserByUsernameParams = async (req, res) => {
 
 const followUser = async (req, res) => {
   try {
+    //checking if the user to follow exists
     const userToFollow = await UsersModel.findById(req.params.id);
-
-    console.log(userToFollow);
     if (!userToFollow) {
       return res.status(404).json({ status: "error", msg: "User not found" });
     }
 
-    // Add the current user ID to the followed users 'followers' array
-    userToFollow.followers.push(req.decoded.userId);
-    await userToFollow.save();
-
-    const currentUser = await UsersModel.findById(req.decoded.userId);
+    //getting the current logged in user
+    const currentUser = await UsersModel.findById(req.decoded.loggedInId);
 
     if (!currentUser) {
       return res
         .status(404)
         .json({ status: "error", msg: "Current user not found" });
     }
-
-    currentUser.following.push(userToFollow.id);
+    //pus the usertofollow id into the loggedin users following
+    currentUser.following.push(req.params.id);
     await currentUser.save();
 
     res.json({

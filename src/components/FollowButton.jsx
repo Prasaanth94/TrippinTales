@@ -8,12 +8,14 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollow = async () => {
+    console.log(userId);
+    console.log(userCtx.accessToken);
     try {
       const res = await fetchData(
         `/api/users/follow/${userId}`,
         "POST",
         undefined,
-        userCtx.Token
+        userCtx.accessToken
       );
 
       if (res.ok) {
