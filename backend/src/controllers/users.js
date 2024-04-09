@@ -11,6 +11,7 @@ const getAllUsers = async (req, res) => {
         username: temp.username,
         first_name: temp.first_name,
         last_name: temp.last_name,
+        profile_picture_url: temp.profile_picture_url,
         email: temp.email,
         phone: temp.phone,
         birthdate: temp.birthdate,
@@ -45,6 +46,8 @@ const updateUser = async (req, res) => {
     if ("username" in req.body) updateUser.username = req.body.username;
     if ("first_name" in req.body) updateUser.first_name = req.body.first_name;
     if ("last_name" in req.body) updateUser.last_name = req.body.last_name;
+    if ("profile_picture_url" in req.body)
+      updateUser.profile_picture_url = req.body.profile_picture_url;
     if ("email" in req.body) updateUser.email = req.body.email;
     if ("phone" in req.body) updateUser.phone = req.body.phone;
     if ("birthdate" in req.body) updateUser.birthdate = req.body.birthdate;
