@@ -10,8 +10,6 @@ const OverLay = (props) => {
   const fetchData = useFetch();
 
   const [selectedFile, setSelectedFile] = useState(null);
-  const firstNameRef = useRef("");
-  const lastNameRef = useRef("");
 
   // Function to handle file selection
   const handleFileChange = (event) => {
@@ -29,7 +27,7 @@ const OverLay = (props) => {
       return;
     }
 
-    // Construct the S3 URL where you want to upload the file
+    // Construct the S3 URL to upload the file
     const s3Url =
       "https://trippintalesdp.s3.ap-southeast-1.amazonaws.com/" +
       selectedFile.name;
@@ -48,8 +46,6 @@ const OverLay = (props) => {
         await fetchUpdatedUserData();
 
         props.setShowFileUploadModal(false); // Close the modal after file upload
-        // updateUserProfilePicture(s3Url);
-        // props.setShowFileUploadModal(false); // Close the modal after file upload
       })
       .catch((error) => {
         console.error("Error uploading file to S3:", error);
@@ -57,9 +53,6 @@ const OverLay = (props) => {
   };
 
   const updateUserProfilePicture = async (s3Url) => {
-    console.log(userCtx.accessToken);
-    console.log(userCtx.userId);
-
     const res = await fetchData(
       "/api/users/" + userCtx.userId,
       "PATCH",
@@ -72,7 +65,6 @@ const OverLay = (props) => {
     );
     if (res.ok) {
       console.log("User profile picture updated successfully");
-      console.log(s3Url);
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);

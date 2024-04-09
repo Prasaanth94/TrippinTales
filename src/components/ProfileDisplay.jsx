@@ -15,6 +15,7 @@ const ProfileDisplay = ({ userData, setUserData }) => {
   const [allTales, setAllTales] = useState(true);
   const [createPostForm, setCreatePostForm] = useState(false);
   const [error, setError] = useState("");
+  const [showFileUploadModal, setShowFileUploadModal] = useState(false);
   const titleRef = useRef();
   const contentRef = useRef();
   const urlRef = useRef();
@@ -82,8 +83,6 @@ const ProfileDisplay = ({ userData, setUserData }) => {
       console.error(error);
     }
   };
-
-  const [showFileUploadModal, setShowFileUploadModal] = useState(false);
 
   const addProfilePicture = () => {
     setShowFileUploadModal(true);
