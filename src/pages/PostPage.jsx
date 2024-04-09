@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import { useParams } from "react-router-dom";
-
+import moment from "moment";
 import Navbar from "../components/Navbar";
 import SideBarMenu from "../components/SideBarMenu";
 import CommentDisplay from "../components/CommentDisplay";
@@ -16,7 +16,8 @@ const PostPage = () => {
   const [postUsername, setPostUsername] = useState("");
   const [postDetail, setPostDetail] = useState([]);
   const [showPostUpdateModal, setShowPostUpdateModal] = useState(false);
-
+  const dateCreate = moment(postDetail.created_at);
+  const formattedDate = dateCreate.format("MMMM DD, YYYY");
   const fetchData = useFetch();
   const { id } = useParams();
   const commentRef = useRef();
@@ -142,7 +143,7 @@ const PostPage = () => {
           </div>
 
           <div className={`col-md-12 ${styles.details}`}>
-            wrote a tale on {postDetail.created_at}
+            wrote a tale on {formattedDate}
           </div>
 
           {userCtx.userId === postDetail.user_id ? (

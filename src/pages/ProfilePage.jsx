@@ -7,6 +7,7 @@ import UserContext from "../context/user";
 import UpdateProfilePage from "../components/UpdateProfilePage";
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import UpdateProfileModal from "../components/UpdateProfileModal";
 
 const ProfilePage = ({ userId }) => {
   const fetchData = useFetch();
@@ -15,10 +16,14 @@ const ProfilePage = ({ userId }) => {
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
   const userCtx = useContext(UserContext);
-  const { id } = useParams();
+  let { id } = useParams();
+  if (!id) {
+    id = userCtx.userId;
+  }
 
   const getUserInfo = async () => {
     setError("");
+    console.log(id);
 
     try {
       const res = await fetchData(
@@ -62,10 +67,22 @@ const ProfilePage = ({ userId }) => {
               userId={userCtx.userId}
               userData={userData}
               setUserData={setUserData}
+              id={id}
             ></ProfileDisplay>
           </div>
         )}
         {updateProfile && (
+          <div>
+            <UpdateProfileModal
+              setProfile={setProfile}
+              setUpdateProfile={setUpdateProfile}
+              userData={userData}
+              getUserInfo={getUserInfo}
+            ></UpdateProfileModal>
+          </div>
+        )}
+
+        {/* {updateProfile && (
           <div>
             <UpdateProfilePage
               setProfile={setProfile}
@@ -74,7 +91,7 @@ const ProfilePage = ({ userId }) => {
               getUserInfo={getUserInfo}
             ></UpdateProfilePage>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

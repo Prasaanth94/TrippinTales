@@ -1,0 +1,22 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal {
+  position: fixed;
+  background: white;
+  top: 10vh;
+  bottom: 10vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: 10px;
+}

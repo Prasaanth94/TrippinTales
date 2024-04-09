@@ -6,7 +6,7 @@ import TalesBanner from "./TalesBanner";
 import moment from "moment";
 import FileUploadModal from "./FileUploadModal";
 
-const ProfileDisplay = ({ userData, setUserData }) => {
+const ProfileDisplay = ({ userData, setUserData, id }) => {
   const fetchData = useFetch();
   const { birthdate } = userData;
   const birthdateMoment = moment(birthdate);
@@ -27,6 +27,7 @@ const ProfileDisplay = ({ userData, setUserData }) => {
   const handleAboutMe = () => {
     setCreatePostForm(false);
     setAllTales(false);
+    console.log(id.id);
     if (!aboutMe) {
       setAboutMe(true);
     } else if (aboutMe) {
@@ -137,7 +138,9 @@ const ProfileDisplay = ({ userData, setUserData }) => {
           <div className={styles.menuStyle}>
             <h3 onClick={handleAboutMe}>About me</h3>
             <h3 onClick={handleTales}>My tales</h3>
-            <h3 onClick={handleCreatePost}>Pen a Tale</h3>
+            {id === userCtx.userId && (
+              <h3 onClick={handleCreatePost}>Pen a Tale</h3>
+            )}
           </div>
         </div>
         <div className={`${styles.createFormContainer}`}>
