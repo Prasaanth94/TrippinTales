@@ -96,6 +96,7 @@ const followUser = async (req, res) => {
   try {
     const userToFollow = await UsersModel.findById(req.params.id);
 
+    console.log(userToFollow);
     if (!userToFollow) {
       return res.status(404).json({ status: "error", msg: "User not found" });
     }
@@ -122,7 +123,9 @@ const followUser = async (req, res) => {
       following: currentUser.following,
     });
   } catch (error) {
+    // Log error to console for debugging
     console.error(error.message);
+    // Send a generic error response
     res.status(500).json({ status: "error", msg: "Failed to follow user" });
   }
 };
