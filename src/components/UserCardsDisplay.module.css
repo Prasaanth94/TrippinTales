@@ -1,0 +1,46 @@
+.profilePage {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+/*  */
+
+.searched-user-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  cursor: pointer;
+  grid-column: 3 / 9;
+  grid-row: auto;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  grid-column: 3 / 8;
+  grid-row: 2 / 2;
+  margin-top: 30px;
+}
+
+.title2 {
+  font-size: 30px;
+  font-weight: 500;
+  grid-column: 3 / 8;
+  grid-row: 3 / 3;
+}
+
+.input {
+  grid-column: 3/8;
+  height: 40px;
+  margin-top: 100px;
+}
+
+.button {
+  grid-column: 8/9;
+  height: 40px;
+  margin-top: 100px;
+}

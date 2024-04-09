@@ -38,14 +38,25 @@ const UserCardsDisplay = () => {
   };
 
   return (
-    <div className="container">
-      <input ref={usernameRef} type="text" placeholder="Enter username" />
-      <button onClick={showSearchUsers}>Search</button>
+    <div className={styles.profilePage}>
+      <input
+        ref={usernameRef}
+        type="text"
+        placeholder="Enter username"
+        className={styles.input}
+      />
+      <button onClick={showSearchUsers} className={styles.button}>
+        Search
+      </button>
 
-      {searchedUsername && <h1>Search Results for {searchedUsername}:</h1>}
-      {!searchedUsername && <h1>Search Results</h1>}
+      {searchedUsername && (
+        <div className={styles.title}>
+          Search Results for {searchedUsername}:
+        </div>
+      )}
+      {!searchedUsername && <div className={styles.title}>Search Results</div>}
       {searchClicked && usersResult && usersResult.length === 0 && (
-        <h1>No user found.</h1>
+        <div className={styles.title2}>No user found.</div>
       )}
       {usersResult &&
         usersResult.length > 0 &&
