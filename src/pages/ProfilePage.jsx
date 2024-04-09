@@ -8,6 +8,7 @@ import UpdateProfilePage from "../components/UpdateProfilePage";
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import UpdateProfileModal from "../components/UpdateProfileModal";
+import FollowButton from "../components/FollowButton";
 
 const ProfilePage = ({ userId }) => {
   const fetchData = useFetch();
@@ -61,6 +62,11 @@ const ProfilePage = ({ userId }) => {
           setProfile={setProfile}
           setUpdateProfile={setUpdateProfile}
         ></SideBarMenu>
+        <FollowButton
+          userId={id}
+          loggedInUserId={userCtx.userId}
+          getUserInfo={getUserInfo}
+        />
         {profile && (
           <div className={styles.profileDisplay}>
             <ProfileDisplay
