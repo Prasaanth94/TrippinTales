@@ -61,6 +61,7 @@ const ProfilePage = ({ userId }) => {
             <ProfileDisplay
               userId={userCtx.userId}
               userData={userData}
+              setUserData={setUserData}
             ></ProfileDisplay>
           </div>
         )}

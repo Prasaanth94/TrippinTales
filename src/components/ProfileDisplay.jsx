@@ -4,8 +4,9 @@ import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import TalesBanner from "./TalesBanner";
 import moment from "moment";
+import FileUploadModal from "./FileUploadModal";
 
-const ProfileDisplay = ({ userData }) => {
+const ProfileDisplay = ({ userData, setUserData }) => {
   const fetchData = useFetch();
   const { birthdate } = userData;
   const birthdateMoment = moment(birthdate);
@@ -81,6 +82,13 @@ const ProfileDisplay = ({ userData }) => {
       console.error(error);
     }
   };
+
+  const [showFileUploadModal, setShowFileUploadModal] = useState(false);
+
+  const addProfilePicture = () => {
+    setShowFileUploadModal(true);
+  };
+
   useEffect(() => {
     if (userData.userId) {
       getUserInfo();
@@ -94,12 +102,32 @@ const ProfileDisplay = ({ userData }) => {
         alt="profile banner"
         className={styles.profileBanner}
       />
+      {userData.profile_picture_url === "" ? (
+        <img
+          className={styles.profilePicture}
+          src="https://southernplasticsurgery.com.au/wp-content/uploads/2013/10/user-placeholder.png"
+          alt="profile picture"
+          onClick={addProfilePicture}
+        />
+      ) : (
+        <img
+          className={styles.profilePicture}
+          src={userData.profile_picture_url}
+          alt="profile picture"
+          onClick={addProfilePicture}
+        />
+      )}
 
-      <img
-        className={styles.profilePicture}
-        src="../public/20240215_GA99.jpg"
-        alt="profile picture"
-      />
+      {showFileUploadModal && (
+        <div>
+          <FileUploadModal
+            setShowFileUploadModal={setShowFileUploadModal}
+            userData={userData}
+            setUserData={setUserData}
+          ></FileUploadModal>
+        </div>
+      )}
+
       <div className="container">
         <h2 className={styles.usersName}>{userData.first_name}</h2>
         <div className={styles.greetings}>
