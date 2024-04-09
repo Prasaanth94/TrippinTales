@@ -42,6 +42,14 @@ const getUserById = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    const { username } = req.body;
+    const existingUser = await UsersModel.findOne({ username });
+    if (existingUser && existingUser._id.toString() !== req.params.id) {
+      return res
+        .status(400)
+        .json({ status: "error", msg: "username already exists!" });
+    }
+
     const updateUser = {};
     if ("username" in req.body) updateUser.username = req.body.username;
     if ("first_name" in req.body) updateUser.first_name = req.body.first_name;

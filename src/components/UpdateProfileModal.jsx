@@ -10,6 +10,7 @@ const OverLay = (props) => {
   const userCtx = useContext(UserContext);
   const { userData, setUpdateProfile, setProfile } = props;
   const [selectedDate, setSelectedDate] = useState(null);
+  const usernameRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const genderRef = useRef();
@@ -34,6 +35,7 @@ const OverLay = (props) => {
         "/api/users/" + userCtx.userId,
         "PATCH",
         {
+          username: usernameRef.current.value,
           first_name: firstNameRef.current.value,
           last_name: lastNameRef.current.value,
           greeting: greetingsRef.current.value,
@@ -58,6 +60,7 @@ const OverLay = (props) => {
   };
 
   useEffect(() => {
+    usernameRef.current.value = userData.username;
     firstNameRef.current.value = userData.first_name;
     lastNameRef.current.value = userData.last_name;
     greetingsRef.current.value = userData.greeting;
@@ -72,6 +75,13 @@ const OverLay = (props) => {
           <h4 className="modal-title">Update Profile</h4>
         </div>
         <div className={styles.body}>
+          <div className={`row ${styles.title}`}>
+            <div className="col-md-1"></div>
+            <div className="col-md-3">Username</div>
+            <input type="text" ref={usernameRef} className="col-md-6" />
+            <div className="col-md-3"></div>
+          </div>
+
           <div className={`row ${styles.title}`}>
             <div className="col-md-1"></div>
             <div className="col-md-3">First Name</div>
