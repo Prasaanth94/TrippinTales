@@ -24,6 +24,19 @@ const UsersSchema = new mongoose.Schema(
     },
     role: { type: String, required: true, default: "user" },
     created_at: { type: Date, default: Date.now },
+
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { collection: "users" }
 );

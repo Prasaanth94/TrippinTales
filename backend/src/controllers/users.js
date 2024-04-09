@@ -21,6 +21,8 @@ const getAllUsers = async (req, res) => {
         created_at: temp.created_at,
         account_status: temp.account_status,
         role: temp.role,
+        followers: temp.followers,
+        following: temp.following,
       });
     }
     res.json(outputArray);
@@ -90,9 +92,49 @@ const getUserByUsernameParams = async (req, res) => {
   }
 };
 
+const followUser = async (req, res) => {
+  try {
+    const userToFollow = await UsersModel.findById(req.params.id);
+
+    if (!userToFollow) {
+      return res.status(404).json({ status: "error", msg: "User not found" });
+    }
+
+    // Add the current user ID to the followed users 'followers' array
+    userToFollow.followers.push(req.decoded.userId);
+    await userToFollow.save();
+
+    const currentUser = await UsersModel.findById(req.decoded.userId);
+
+    if (!currentUser) {
+      return res
+        .status(404)
+        .json({ status: "error", msg: "Current user not found" });
+    }
+
+    currentUser.following.push(userToFollow.id);
+    await currentUser.save();
+
+    res.json({
+      status: "success",
+      msg: "User followed successfully",
+      followers: userToFollow.followers,
+      following: currentUser.following,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ status: "error", msg: "Failed to follow user" });
+  }
+};
+
+module.exports = {
+  followUser,
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   updateUser,
   getUserByUsernameParams,
+  followUser,
 };
