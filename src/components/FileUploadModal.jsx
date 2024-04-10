@@ -95,10 +95,12 @@ const OverLay = (props) => {
     <div className={styles.backdrop}>
       <div className={styles.modal}>
         <div className={styles.header}>
-          <h4 className="modal-title">Add Photo</h4>
+          <h4 className="modal-title">Change Photo</h4>
         </div>
         <br />
-        <div className={styles.content}>
+        <div
+          className={`col-md-12 d-flex justify-content-center ${styles.content}`}
+        >
           <input type="file" onChange={handleFileChange} />
         </div>
         <br />
