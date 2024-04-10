@@ -108,6 +108,14 @@ const followUser = async (req, res) => {
         .status(404)
         .json({ status: "error", msg: "Current user not found" });
     }
+
+    const isAlreadyFollowing = currentUser.following.includes(req.params.id);
+    if (isAlreadyFollowing) {
+      return res
+        .status(400)
+        .json({ status: "error", msg: "User already followed" });
+    }
+
     //pus the usertofollow id into the loggedin users following
     currentUser.following.push(req.params.id);
     userToFollow.followers.push(req.decoded.loggedInId);

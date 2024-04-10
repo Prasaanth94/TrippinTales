@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 import styles from "./Follow.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Followers = (props) => {
   const fetchData = useFetch();
   const userCtx = useContext(UserContext);
   const [userFollowers, setUserFollowers] = useState([]);
+  const navigate = useNavigate();
 
   const getUserFollowers = async () => {
     console.log(props.userFollowers);
@@ -30,6 +32,10 @@ const Followers = (props) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleProfileNavi = (id) => {
+    navigate(`/ProfilePage/${id}`);
   };
 
   useEffect(() => {
