@@ -29,6 +29,7 @@ const FriendsPage = () => {
         console.log("res.data.following: ", res.data.following);
         setUserFollowing(res.data.following);
         console.log("res.data.followers :", res.data.followers);
+        setUserFollowers(res.data.followers);
       }
     } catch (error) {
       console.error(error);

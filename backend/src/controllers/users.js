@@ -110,7 +110,9 @@ const followUser = async (req, res) => {
     }
     //pus the usertofollow id into the loggedin users following
     currentUser.following.push(req.params.id);
+    userToFollow.followers.push(req.decoded.loggedInId);
     await currentUser.save();
+    await userToFollow.save();
 
     res.json({
       status: "success",
