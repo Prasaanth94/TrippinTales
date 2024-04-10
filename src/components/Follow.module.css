@@ -37,5 +37,9 @@
 .followersTitle {
   margin: 10px 20px;
   margin-bottom: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: #131b23cc;
   text-decoration: underline;
 }
