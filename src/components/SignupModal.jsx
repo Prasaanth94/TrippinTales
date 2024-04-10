@@ -43,6 +43,8 @@ const SignupForm = (props) => {
         setAccCreated(true);
         setAllFields(false);
         setIsLoading(false);
+        props.setShowSignupModal(false);
+        alert("Account Created");
       } else {
         setError(JSON.stringify(res.data));
         setIsLoading(false);

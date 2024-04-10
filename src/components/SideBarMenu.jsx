@@ -9,6 +9,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import PersonSearchIcon from "@mui/icons-material/PersonSearch";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import styles from "./SideBarMenu.module.css";
 import { Link } from "react-router-dom";
@@ -44,7 +49,7 @@ export default function TemporaryDrawer(props) {
         <ListItem disablePadding component={Link} to="/ProfilePage">
           <ListItemButton>
             <ListItemIcon>
-              <MailIcon />
+              <AccountBoxIcon />
             </ListItemIcon>
             <ListItemText primary={"Profile Page"} />
           </ListItemButton>
@@ -54,7 +59,7 @@ export default function TemporaryDrawer(props) {
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/SearchUsersPage">
             <ListItemIcon>
-              <MailIcon />
+              <PersonSearchIcon />
             </ListItemIcon>
             <ListItemText primary={"Search User"} />
           </ListItemButton>
@@ -64,7 +69,7 @@ export default function TemporaryDrawer(props) {
         <ListItem disablePadding>
           <ListItemButton onClick={handleUpdateClick}>
             <ListItemIcon>
-              <MailIcon />
+              <ModeEditIcon />
             </ListItemIcon>
             <ListItemText primary={"Update Profile"} />
           </ListItemButton>
@@ -75,7 +80,7 @@ export default function TemporaryDrawer(props) {
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/FriendsPage">
             <ListItemIcon>
-              <MailIcon />
+              <PeopleAltIcon />
             </ListItemIcon>
             <ListItemText primary={"Friends"} />
           </ListItemButton>
@@ -85,7 +90,7 @@ export default function TemporaryDrawer(props) {
         <ListItem disablePadding>
           <ListItemButton component={Link} to="/" onClick={handleLogOutClick}>
             <ListItemIcon>
-              <MailIcon />
+              <LogoutIcon />
             </ListItemIcon>
             <ListItemText primary={"Log Out"} />
           </ListItemButton>
