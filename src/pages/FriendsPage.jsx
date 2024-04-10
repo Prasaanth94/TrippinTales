@@ -13,6 +13,7 @@ const FriendsPage = () => {
   const [followersDisplay, setFollowersDisplay] = useState(false);
   //logged in users following
   const [userFollowing, setUserFollowing] = useState([]);
+  const [userFollowers, setUserFollowers] = useState([]);
 
   const getLoggedInUserFollowing = async () => {
     try {
@@ -27,6 +28,7 @@ const FriendsPage = () => {
       } else {
         console.log("res.data.following: ", res.data.following);
         setUserFollowing(res.data.following);
+        console.log("res.data.followers :", res.data.followers);
       }
     } catch (error) {
       console.error(error);
@@ -61,7 +63,9 @@ const FriendsPage = () => {
       <SideBarMenu></SideBarMenu>
       <button onClick={handleFollowersClick}>Followers</button>
       <button onClick={handleFollowingClick}>Following</button>
-      {followersDisplay && <Followers></Followers>}
+      {followersDisplay && (
+        <Followers userFollowers={userFollowers}></Followers>
+      )}
       {followingDisplay && (
         <Following userFollowing={userFollowing}></Following>
       )}
