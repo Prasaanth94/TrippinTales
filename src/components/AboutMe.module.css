@@ -3,23 +3,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Quicksand:wght@300..700&display=swap");
 
 .aboutMeContainer {
-  font-family: "Inconsolata", monospace;
-  font-optical-sizing: auto;
-  font-weight: 200;
-  font-style: normal;
-  font-variation-settings: "wdth" 100;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto;
+  gap: 20px;
 }
 
-.names {
-  font-family: "Plus Jakarta Sans", sans-serif;
+.detailCard {
+  background-color: rgb(251, 255, 254);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  grid-column: 1/8;
+}
+
+.names,
+.date,
+.gender,
+.email {
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
+  font-weight: 300;
+  padding: 10px;
 }
 
 .selfDescription {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
-  font-style: normal;
+  padding: 10px;
 }

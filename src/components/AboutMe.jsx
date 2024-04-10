@@ -4,14 +4,19 @@ import styles from "./AboutMe.module.css";
 const AboutMe = (props) => {
   return (
     <div className={styles.aboutMeContainer}>
-      <h1 className={styles.names}>
-        {props.firstName} {props.lastName}
-      </h1>
-      <h3 className={styles.gender}>{props.gender}</h3>
-      <h3 className={styles.gender}>{props.date}</h3>
-      <h3 className={styles.gender}>{props.email}</h3>
-
-      <h3 className={styles.selfDescription}>{props.selfDescription}</h3>
+      <div className={styles.detailCard}>
+        <div>Details:</div>
+        <div className={styles.names}>
+          Name: {props.firstName} {props.lastName}
+        </div>
+        <div className={styles.gender}>Gender: {props.gender}</div>
+        <div className={styles.date}>Date: {props.date}</div>
+        <div className={styles.email}>Email: {props.email}</div>
+      </div>
+      <div className={styles.detailCard}>
+        <div>About Me:</div>
+        <div className={styles.selfDescription}>{props.selfDescription}</div>
+      </div>
     </div>
   );
 };
