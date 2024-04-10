@@ -43,7 +43,7 @@ const LoginForm = (props) => {
         <div className={styles.inputField}>
           <input
             type="text"
-            placeholder="User Name"
+            placeholder="User Email"
             className={styles.userNameInput}
             onChange={(e) => setEmail(e.target.value)}
           ></input>
