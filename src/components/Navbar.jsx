@@ -5,13 +5,13 @@ const Navbar = () => {
   return (
     <div className={styles.Navbar}>
       <h1>Trippin' Tales</h1>
-      <input
+      {/* <input
         className={styles.navSearch}
         type="text"
         placeholder="Search User.."
-      ></input>
+      ></input> */}
     </div>
   );
-};
+}; //input as ICEBOX
 
 export default Navbar;
