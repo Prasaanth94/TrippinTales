@@ -9,7 +9,7 @@ import BannerUploadModal from "./BannerUploadModal";
 import FollowButton from "./FollowButton";
 import AboutMe from "./AboutMe";
 
-const ProfileDisplay = ({ userData, setUserData, id }) => {
+const ProfileDisplay = ({ userData, setUserData, id, getUserInfo }) => {
   const fetchData = useFetch();
   const { birthdate } = userData;
   const birthdateMoment = moment(birthdate);
@@ -203,12 +203,16 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
           <div className={styles.menuStyle}>
             <h3 onClick={handleAboutMe}>About me</h3>
             <h3 onClick={handleTales}>My tales</h3>
-            {id === userCtx.userId ? (
-              <h3 onClick={handleCreatePost}>Pen a Tale</h3>
-            ) : (
+            {id !== userCtx.userId ? (
               <div>
-                <FollowButton></FollowButton>
+                <FollowButton
+                  loggedInUserId={userCtx.userId}
+                  userId={id}
+                  getUserInfo={getUserInfo}
+                ></FollowButton>
               </div>
+            ) : (
+              <h3 onClick={handleCreatePost}>Pen a Tale</h3>
             )}
           </div>
         </div>

@@ -56,13 +56,7 @@ const ProfilePage = ({ userId }) => {
           setProfile={setProfile}
           setUpdateProfile={setUpdateProfile}
         ></SideBarMenu>
-        <div className={styles.followbuttonContainer}>
-          <FollowButton
-            userId={id}
-            loggedInUserId={userCtx.userId}
-            getUserInfo={getUserInfo}
-          />
-        </div>
+        <div className={styles.followbuttonContainer}></div>
         {profile && (
           <div className={styles.profileDisplay}>
             <ProfileDisplay
@@ -70,6 +64,7 @@ const ProfilePage = ({ userId }) => {
               userData={userData}
               setUserData={setUserData}
               id={id}
+              getUserInfo={getUserInfo}
             ></ProfileDisplay>
           </div>
         )}
