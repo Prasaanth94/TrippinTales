@@ -20,6 +20,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
   const [error, setError] = useState("");
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
   const [showBannerUploadModal, setShowBannerUploadModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
   const titleRef = useRef();
   const contentRef = useRef();
   const urlRef = useRef();
@@ -58,7 +59,42 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
     }
   };
 
-  const createPost = async () => {
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  // Construct the S3 URL to upload the file
+  const imageUrl = () => {
+    return (
+      "https://trippintalesdp.s3.ap-southeast-1.amazonaws.com/" +
+      selectedFile.name
+    );
+  };
+
+  // Upload image to S3 and create post
+  const uploadImageAndCreatePost = async () => {
+    const url = imageUrl(); // Get the S3 URL
+    try {
+      // Make a PUT request to upload the file to S3
+      const response = await fetch(url, {
+        method: "PUT",
+        body: selectedFile,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload file to S3");
+      }
+
+      console.log("File uploaded successfully");
+      // Create post with the uploaded image URL
+      await createPost(url);
+    } catch (error) {
+      console.error("Error uploading file to S3:", error);
+    }
+  };
+
+  const createPost = async (imageUrl) => {
     try {
       const res = await fetchData(
         "/api/posts",
@@ -71,6 +107,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
           url: urlRef.current.value,
           slug: slugRef.current.value,
           tags: tagsRef.current.value,
+          images: imageUrl,
           meta_description: meta_descriptionRef.current.value,
         },
         userCtx.accessToken
@@ -206,6 +243,8 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
                 ref={contentRef}
                 style={{ height: "250px", width: "450px" }}
               ></textarea>
+              <h5>Insert image</h5>
+              <input type="file" onChange={handleFileChange} />
               <h5>Create a URL :</h5>
               <input type="text" ref={urlRef} placeholder="url"></input>
               <h5>Create a slug :</h5>
@@ -214,7 +253,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
               <input type="text" ref={tagsRef} placeholder="Tags"></input>
               {error && <div>{error}</div>}
               <br />
-              <button onClick={createPost}>Submit</button>
+              <button onClick={uploadImageAndCreatePost}>Submit</button>
             </div>
           )}
           {allTales && (
