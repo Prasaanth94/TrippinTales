@@ -44,19 +44,16 @@ const Following = (props) => {
   }, [props.userFollowing]);
 
   return (
-    <>
+    <div className={styles.cardsContainer}>
       {followingUser.length > 0 ? (
-        <div>
+        <div className={styles.cards}>
           <div className={styles.followersTitle}>
             <h2>Following :</h2>
           </div>
-          <div className={styles.cardsContainer}>
+          <div>
             {followingUser.map((user) => (
-              <div
-                className={`container ${styles.profileCard}`}
-                onClick={() => handleProfileNavi(user._id)}
-              >
-                <div key={user._id}>
+              <div onClick={() => handleProfileNavi(user._id)}>
+                <div key={user._id} className={styles.profileCard}>
                   {user.profile_picture_url === "" ? (
                     <img
                       className={styles.profilePicture}
@@ -70,8 +67,11 @@ const Following = (props) => {
                       alt="profile picture"
                     />
                   )}
-                  <div>{user.username}</div>
-                  <div></div>
+                  <div className={styles.username}>{user.username}</div>
+                  <div className={styles.name}>
+                    {user.first_name} {user.last_name}
+                  </div>
+                  <div className={styles.greeting}>{user.greeting}</div>
                 </div>
               </div>
             ))}
@@ -82,7 +82,7 @@ const Following = (props) => {
           <h1>Not Following Any Users</h1>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
