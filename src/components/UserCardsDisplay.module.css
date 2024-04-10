@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 .profilePage {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -8,17 +10,8 @@
 
 /*  */
 
-.searched-user-card {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  cursor: pointer;
-  grid-column: 3 / 9;
-  grid-row: auto;
-}
-
 .title {
+  font-family: "Montserrat", sans-serif;
   font-size: 40px;
   font-weight: 700;
   grid-column: 3 / 8;
@@ -27,6 +20,7 @@
 }
 
 .title2 {
+  font-family: "Montserrat", sans-serif;
   font-size: 30px;
   font-weight: 500;
   grid-column: 3 / 8;
@@ -34,13 +28,74 @@
 }
 
 .input {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   grid-column: 3/8;
   height: 40px;
   margin-top: 100px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
   grid-column: 8/9;
   height: 40px;
   margin-top: 100px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #00b7ff;
+  color: white;
+}
+
+.searched-user-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2cqw;
+  cursor: pointer;
+  grid-column: 3 / 9;
+  grid-row: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 50px);
+  gap: 20px;
+}
+
+/*  */
+
+.img {
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  object-fit: cover;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.username {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  grid-row: 1/2;
+  grid-column: 2/5;
+}
+
+.name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  grid-row: 2/3;
+  grid-column: 2/5;
+}
+
+.greeting {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  grid-row: 3/4;
+  grid-column: 2/5;
 }

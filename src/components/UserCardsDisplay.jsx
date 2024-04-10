@@ -4,6 +4,9 @@ import UserContext from "../context/user";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserCardsDisplay.module.css";
 
+const placeholderImageUrl =
+  "https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg";
+
 const UserCardsDisplay = () => {
   const fetchData = useFetch();
   const [usersResult, setUsersResult] = useState([]);
@@ -66,11 +69,16 @@ const UserCardsDisplay = () => {
             onClick={() => handleProfileNavi(user._id)}
             className={styles["searched-user-card"]}
           >
-            <img src={user.image} alt={`Profile of ${user.username}`} />
-            <h3>{user.username}</h3>
-            <h5>
+            <img
+              className={styles.img}
+              src={user.profile_picture_url || placeholderImageUrl}
+              alt={`Profile of ${user.username}`}
+            />
+            <div className={styles.username}>{user.username}</div>
+            <div className={styles.name}>
               {user.first_name} {user.last_name}
-            </h5>
+            </div>
+            <div className={styles.greeting}>{user.greeting}</div>
           </div>
         ))}
     </div>
