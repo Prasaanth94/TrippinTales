@@ -165,8 +165,12 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
           <div className={styles.menuStyle}>
             <h3 onClick={handleAboutMe}>About me</h3>
             <h3 onClick={handleTales}>My tales</h3>
-            {id === userCtx.userId && (
+            {id === userCtx.userId ? (
               <h3 onClick={handleCreatePost}>Pen a Tale</h3>
+            ) : (
+              <div>
+                <FollowButton></FollowButton>
+              </div>
             )}
           </div>
         </div>

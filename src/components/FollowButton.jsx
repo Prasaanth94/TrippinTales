@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
 
@@ -20,7 +20,6 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
 
       if (res.ok) {
         console.log("Follow user:", userId);
-        setIsFollowing(true);
       } else if (res.status === 429) {
         alert("Too many requests. Please try again later.");
       } else {
@@ -31,12 +30,45 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
     }
   };
 
-  // const handleUnfollow = async () => {
+  const handleUnfollow = async () => {
+    try {
+      const res = await fetchData(
+        `/api/users/unfollow/${userId}`,
+        "DELETE",
+        undefined,
+        userCtx.accessToken
+      );
+      if (res.status === 429) {
+        alert("Too many requests. Please try again later.");
+      } else {
+        alert(JSON.stringify(res.data));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  //   console.log("Unfollow user:", userId);
-  //   setIsFollowing(false);
+  const getLoggedInFollowing = async () => {
+    try {
+      const res = await fetchData(
+        `/api/users/${userCtx.userId}`,
+        "GET",
+        undefined,
+        userCtx.accessToken
+      );
+      if (!res.ok) {
+        console.log("error getting Logged in user data");
+      }
+      const isFollowed = res.data.following.includes(userId);
+      setIsFollowing(isFollowed);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // };
+  useEffect(() => {
+    getLoggedInFollowing();
+  }, []);
 
   if (userId === loggedInUserId) {
     return null;

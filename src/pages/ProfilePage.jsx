@@ -87,17 +87,6 @@ const ProfilePage = ({ userId }) => {
             ></UpdateProfileModal>
           </div>
         )}
-
-        {/* {updateProfile && (
-          <div>
-            <UpdateProfilePage
-              setProfile={setProfile}
-              setUpdateProfile={setUpdateProfile}
-              userData={userData}
-              getUserInfo={getUserInfo}
-            ></UpdateProfilePage>
-          </div>
-        )} */}
       </div>
     </>
   );

@@ -7,6 +7,7 @@ const {
   updateUser,
   getUserByUsernameParams,
   followUser,
+  unfollowUser,
 } = require("../controllers/users");
 const {
   validateBodyInUser,
@@ -20,5 +21,6 @@ router.get("/users/:id", getUserById);
 router.patch("/users/:id", validateUpdateBodyInUser, errorCheck, updateUser);
 router.post("/users/:username", getUserByUsernameParams);
 router.post("/users/follow/:id", authUser, followUser);
+router.delete("/users/unfollow/:id", authUser, unfollowUser);
 
 module.exports = router;
