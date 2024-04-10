@@ -132,7 +132,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
       {userData.profile_picture_url === "" ? (
         <img
           className={styles.profilePicture}
-          src="https://southernplasticsurgery.com.au/wp-content/uploads/2013/10/user-placeholder.png"
+          src="https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"
           alt="profile picture"
           onClick={addProfilePicture}
         />
