@@ -1,34 +1,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+}
+
+.cards {
+  grid-column: 3/9;
 }
 
 .profileCard {
-  margin-bottom: 20px;
-  flex: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f6fcff;
+  padding: 20px;
+  grid-column: 3 / 9;
+  grid-row: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 50px);
+  gap: 20px;
+}
+
+.profileCard:hover {
+  background-color: rgb(251, 255, 254);
 }
 
 .profilePicture {
-  width: 50px;
-  height: 50px;
-  border: 2px solid black;
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  margin-top: 10px;
+  object-fit: cover;
+  border: solid;
+  border-color: rgba(19, 27, 35, 0.2);
   border-radius: 50%;
+  border-width: 2px;
+  width: 150px;
+  height: 150px;
 }
 
 .noFollowers {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  grid-column: 8/9;
+  grid-column: 1/11;
   height: 40px;
   margin-top: 100px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #00b7ff;
-  color: white;
-  display: flex;
+  color: #131b23cc;
+  display: grid;
   justify-content: center;
   align-items: center;
   height: 50px;
@@ -41,5 +62,34 @@
   font-size: 40px;
   font-weight: 700;
   color: #131b23cc;
-  text-decoration: underline;
+  display: grid;
+  grid-column: 1/11;
+  justify-content: center;
+}
+
+.username {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  grid-row: 1/2;
+  grid-column: 2/5;
+  color: #131b23cc;
+}
+
+.name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  grid-row: 2/3;
+  grid-column: 2/5;
+  color: #131b23cc;
+}
+
+.greeting {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  grid-row: 3/4;
+  grid-column: 2/5;
+  color: #131b23cc;
 }

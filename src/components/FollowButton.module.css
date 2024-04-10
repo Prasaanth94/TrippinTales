@@ -7,10 +7,11 @@
   border-radius: 30px;
   padding: 0 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #00b7ff;
+  background-color: #68a186;
   color: white;
 }
 
 .buttonStyle:hover {
   transform: scale(1.2);
+  background-color: #74b395;
 }

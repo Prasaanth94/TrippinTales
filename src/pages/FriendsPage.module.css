@@ -1,30 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .buttonContainer {
-  margin-top: 50px;
+  margin-top: 125px;
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
 }
 
 .followersButton {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  grid-column: 8/9;
-  height: 40px;
+  grid-column: 3/6;
+  height: 50px;
   margin-top: 50px;
   border: 1px solid #ccc;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   padding: 0 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #00b7ff;
+  background-color: #68a186;
   color: white;
+  font-size: 21px;
 }
 
 .followersButton:hover {
-  transform: scale(1.2);
-  transition: transform 1s ease;
-  box-shadow: 2px 10px 3px rgba(0, 0, 0, 0.1);
+  transform: scale(1.03);
+  transition: transform 0.2s ease;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  background-color: #74b395;
 }
 
 .followingButton {
-  margin-left: 30px;
+  grid-column: 6/9;
 }
