@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .postPage {
   width: 100%;
@@ -17,7 +16,7 @@
 }
 
 .container h1 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
@@ -28,7 +27,7 @@
   align-items: center;
   justify-content: center;
   margin: 10px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Crimson Text", serif;
 }
 
 .details * {
@@ -46,7 +45,7 @@
 .content {
   margin: 20px auto;
   text-align: justify;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Crimson Text", serif;
   font-size: 1.1em;
 }
 
