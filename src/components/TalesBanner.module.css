@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 .postBanner {
-  border-bottom: 2px solid black;
+  border: 2px solid rgb(0, 0, 0, 0.1);
   padding: 10px;
   margin-bottom: 20px;
-  background-color: rgb(248, 249, 239);
+  background-color: rgb(251, 255, 254);
   width: 100%;
 }
 
