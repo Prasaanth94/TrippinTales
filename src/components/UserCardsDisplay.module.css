@@ -48,11 +48,11 @@
   height: 40px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #6acc9b;
+  background-color: #68a186;
   color: white;
 }
 .button:hover {
-  background-color: rgb(128, 226, 177);
+  background-color: #74b395;
 }
 
 .searched-user-card {

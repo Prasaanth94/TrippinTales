@@ -1,4 +1,3 @@
-import styles from "./UpdateProfilePage.module.css";
 import React, { useState, useRef, useEffect, useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
