@@ -6,6 +6,7 @@ import TalesBanner from "./TalesBanner";
 import moment from "moment";
 import FileUploadModal from "./FileUploadModal";
 import BannerUploadModal from "./BannerUploadModal";
+import FollowButton from "./FollowButton";
 
 const ProfileDisplay = ({ userData, setUserData, id }) => {
   const fetchData = useFetch();
