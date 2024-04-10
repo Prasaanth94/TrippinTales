@@ -76,7 +76,9 @@ const Following = (props) => {
           </div>
         </div>
       ) : (
-        <h1>Not Following Any Users</h1>
+        <div className={styles.noFollowers}>
+          <h1>Not Following Any Users</h1>
+        </div>
       )}
     </>
   );

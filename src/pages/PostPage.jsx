@@ -43,7 +43,7 @@ const PostPage = () => {
       undefined,
       userCtx.accessToken
     );
-    console.log(res.data);
+
     if (res.ok) {
       setPostDetail(res.data);
       fetchPostUsername(res.data.user_id);

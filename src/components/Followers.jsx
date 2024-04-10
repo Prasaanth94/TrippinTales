@@ -11,7 +11,6 @@ const Followers = (props) => {
   const navigate = useNavigate();
 
   const getUserFollowers = async () => {
-    console.log(props.userFollowers);
     try {
       const userDataPromises = props.userFollowers.map(async (userId) => {
         const res = await fetchData(

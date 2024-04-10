@@ -1,9 +1,16 @@
 .buttonStyle {
-  background-color: lightblue;
-  border-radius: 20px;
-  height: 50px;
-  width: 150px;
-  outline: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  grid-column: 8/9;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  padding: 0 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #00b7ff;
+  color: white;
 }
 
 .buttonStyle:hover {

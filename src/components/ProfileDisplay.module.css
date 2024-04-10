@@ -1,6 +1,6 @@
 .profileDisplay {
   width: 100%;
-  background: rgb(239, 105, 61);
+  background-color: #f8f8fa;
 }
 
 .profileBanner {
@@ -43,7 +43,7 @@
 }
 
 .createPostForm {
-  background-color: antiquewhite;
+  background: #d0d2dd90;
   width: 80%;
   padding: 30px 30px;
   border-radius: 30px;
