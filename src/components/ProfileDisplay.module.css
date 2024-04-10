@@ -6,6 +6,7 @@
 .profileBanner {
   width: 100%;
   height: 300px;
+  object-fit: cover;
 }
 
 .profilePicture {
@@ -17,6 +18,7 @@
   border: 2px solid black;
   border-radius: 50%;
   z-index: 1; /* Ensure it appears above the banner */
+  object-fit: cover;
 }
 
 .usersName {
