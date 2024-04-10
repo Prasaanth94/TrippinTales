@@ -1,0 +1,15 @@
+.buttonContainer {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.followersButton {
+  height: 50px;
+  width: 150px;
+  background-color: lightblue;
+  border-radius: 30px;
+}
+
+.followingButton {
+  margin-left: 30px;
+}

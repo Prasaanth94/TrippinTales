@@ -5,6 +5,7 @@ import Followers from "../components/Followers";
 import Following from "../components/Following";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import styles from "./FriendsPage.module.css";
 
 const FriendsPage = () => {
   const fetchData = useFetch();
@@ -26,9 +27,7 @@ const FriendsPage = () => {
       if (!res.ok) {
         console.log("Cant Get User Data");
       } else {
-        console.log("res.data.following: ", res.data.following);
         setUserFollowing(res.data.following);
-        console.log("res.data.followers :", res.data.followers);
         setUserFollowers(res.data.followers);
       }
     } catch (error) {
@@ -62,8 +61,20 @@ const FriendsPage = () => {
     <>
       <Navbar></Navbar>
       <SideBarMenu></SideBarMenu>
-      <button onClick={handleFollowersClick}>Followers</button>
-      <button onClick={handleFollowingClick}>Following</button>
+      <div className={styles.buttonContainer}>
+        <button
+          className={styles.followersButton}
+          onClick={handleFollowersClick}
+        >
+          Followers
+        </button>
+        <button
+          className={`${styles.followersButton} ${styles.followingButton}`}
+          onClick={handleFollowingClick}
+        >
+          Following
+        </button>
+      </div>
       {followersDisplay && (
         <Followers userFollowers={userFollowers}></Followers>
       )}

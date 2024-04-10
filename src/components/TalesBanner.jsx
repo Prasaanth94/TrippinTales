@@ -10,8 +10,6 @@ const TalesBanner = (props) => {
 
   const userCtx = useContext(UserContext);
   const getTales = async () => {
-    console.log(userCtx.userId);
-
     try {
       const res = await fetchData(
         "/api/" + props.dataId + "/posts",

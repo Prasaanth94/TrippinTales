@@ -30,7 +30,6 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
   const handleAboutMe = () => {
     setCreatePostForm(false);
     setAllTales(false);
-    console.log(id.id);
     if (!aboutMe) {
       setAboutMe(true);
     } else if (aboutMe) {

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
+import styles from "./FollowButton.module.css";
 
 const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
   const fetchData = useFetch();
@@ -8,8 +9,6 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
   const [isFollowing, setIsFollowing] = useState(false);
 
   const handleFollow = async () => {
-    console.log(userId);
-    console.log(userCtx.accessToken);
     try {
       const res = await fetchData(
         `/api/users/follow/${userId}`,
@@ -19,7 +18,7 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
       );
 
       if (res.ok) {
-        console.log("Follow user:", userId);
+        getLoggedInFollowing();
       } else if (res.status === 429) {
         alert("Too many requests. Please try again later.");
       } else {
@@ -41,13 +40,14 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
       if (res.status === 429) {
         alert("Too many requests. Please try again later.");
       } else {
-        alert(JSON.stringify(res.data));
+        alert("User Unfollowed");
       }
+      getLoggedInFollowing();
     } catch (error) {
       console.error(error);
     }
   };
-
+  //function to check if the current user profile is being followed by logged in id
   const getLoggedInFollowing = async () => {
     try {
       const res = await fetchData(
@@ -77,9 +77,13 @@ const FollowButton = ({ userId, loggedInUserId, getUserInfo }) => {
   return (
     <div>
       {isFollowing ? (
-        <button onClick={handleUnfollow}>Unfollow</button>
+        <button className={styles.buttonStyle} onClick={handleUnfollow}>
+          Unfollow
+        </button>
       ) : (
-        <button onClick={handleFollow}>Follow</button>
+        <button className={styles.buttonStyle} onClick={handleFollow}>
+          Follow
+        </button>
       )}
     </div>
   );

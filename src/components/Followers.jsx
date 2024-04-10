@@ -75,7 +75,9 @@ const Followers = (props) => {
           </div>
         </div>
       ) : (
-        <h1>No Followers</h1>
+        <div className={styles.noFollowers}>
+          <h1>No Followers</h1>
+        </div>
       )}
     </>
   );

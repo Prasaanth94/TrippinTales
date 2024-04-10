@@ -24,7 +24,6 @@ const ProfilePage = ({ userId }) => {
 
   const getUserInfo = async () => {
     setError("");
-    console.log(id);
 
     try {
       const res = await fetchData(
@@ -49,11 +48,6 @@ const ProfilePage = ({ userId }) => {
     setProfile(true);
   }, [id, userId]);
 
-  useEffect(() => {
-    console.log(userData);
-    console.log(userData._id); // Log userData
-  }, [userData]);
-
   return (
     <>
       <div className={styles.profilePage}>
@@ -62,11 +56,13 @@ const ProfilePage = ({ userId }) => {
           setProfile={setProfile}
           setUpdateProfile={setUpdateProfile}
         ></SideBarMenu>
-        <FollowButton
-          userId={id}
-          loggedInUserId={userCtx.userId}
-          getUserInfo={getUserInfo}
-        />
+        <div className={styles.followbuttonContainer}>
+          <FollowButton
+            userId={id}
+            loggedInUserId={userCtx.userId}
+            getUserInfo={getUserInfo}
+          />
+        </div>
         {profile && (
           <div className={styles.profileDisplay}>
             <ProfileDisplay
