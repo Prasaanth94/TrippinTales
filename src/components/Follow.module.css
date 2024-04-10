@@ -33,3 +33,9 @@
   align-items: center;
   height: 50px;
 }
+
+.followersTitle {
+  margin: 10px 20px;
+  margin-bottom: 30px;
+  text-decoration: underline;
+}

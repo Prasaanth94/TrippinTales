@@ -45,7 +45,9 @@ const Followers = (props) => {
     <>
       {userFollowers.length > 0 ? (
         <div>
-          <h2>Following</h2>
+          <div className={styles.followersTitle}>
+            <h2>Followers :</h2>
+          </div>
           <div className={styles.cardsContainer}>
             {userFollowers.map((user) => (
               <div

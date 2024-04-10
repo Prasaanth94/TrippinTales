@@ -191,7 +191,7 @@ const PostPage = () => {
             <div className={styles.comment}>
               <Avatar alt="" src="/static/images/avatar/3.jpg" />
               <textarea
-                class="form-control"
+                className="form-control"
                 placeholder="Add your comment"
                 ref={commentRef}
               ></textarea>
