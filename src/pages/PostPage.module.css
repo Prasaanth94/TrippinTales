@@ -16,7 +16,7 @@
 }
 
 .container h1 {
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: center;
   margin: 10px;
-  font-family: "Crimson Text", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .details * {
@@ -45,7 +45,7 @@
 .content {
   margin: 20px auto;
   text-align: justify;
-  font-family: "Crimson Text", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.1em;
 }
 
@@ -70,7 +70,7 @@
   border-radius: 10px;
   margin: 14px;
   padding: 14px;
-  font-family: "Avenir Next", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.9em;
 }
 
