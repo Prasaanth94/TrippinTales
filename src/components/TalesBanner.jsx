@@ -38,7 +38,7 @@ const TalesBanner = (props) => {
         return (
           <div className={styles.postBanner}>
             <Link className={styles.textLink} to={`/posts/${item._id}`}>
-              <h1>{item.title}</h1>
+              <h1 className={styles.bannerTitle}>{item.title}</h1>
               <p>{item.meta_description}</p>
             </Link>
           </div>

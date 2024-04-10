@@ -7,6 +7,7 @@ import moment from "moment";
 import FileUploadModal from "./FileUploadModal";
 import BannerUploadModal from "./BannerUploadModal";
 import FollowButton from "./FollowButton";
+import AboutMe from "./AboutMe";
 
 const ProfileDisplay = ({ userData, setUserData, id }) => {
   const fetchData = useFetch();
@@ -177,14 +178,14 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
         <div className={`${styles.createFormContainer}`}>
           {aboutMe && (
             <div>
-              <h1>
-                {userData.first_name} {userData.last_name}
-              </h1>
-              <h3>{userData.gender}</h3>
-              <h3>{formattedDate}</h3>
-              <h3>{userData.email}</h3>
-
-              <h3>{userData.self_description}</h3>
+              <AboutMe
+                firstName={userData.first_name}
+                lastName={userData.last_name}
+                gender={userData.gender}
+                date={formattedDate}
+                email={userData.email}
+                selfDescription={userData.self_description}
+              ></AboutMe>
             </div>
           )}
 

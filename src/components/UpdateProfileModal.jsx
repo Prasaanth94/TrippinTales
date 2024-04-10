@@ -28,8 +28,6 @@ const OverLay = (props) => {
   };
 
   const updateUserProfile = async (req, res) => {
-    console.log(userCtx.accessToken);
-    console.log(userCtx.userId);
     try {
       const res = await fetchData(
         "/api/users/" + userCtx.userId,
