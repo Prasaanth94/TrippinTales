@@ -11,8 +11,8 @@
 .modal {
   position: fixed;
   background: white;
-  top: 10vh;
-  bottom: 10vh;
+  top: 20vh;
+  bottom: 40vh;
   left: 10%;
   width: 80%;
   z-index: 100;

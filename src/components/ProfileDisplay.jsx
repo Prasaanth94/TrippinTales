@@ -5,6 +5,7 @@ import UserContext from "../context/user";
 import TalesBanner from "./TalesBanner";
 import moment from "moment";
 import FileUploadModal from "./FileUploadModal";
+import BannerUploadModal from "./BannerUploadModal";
 
 const ProfileDisplay = ({ userData, setUserData, id }) => {
   const fetchData = useFetch();
@@ -16,6 +17,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
   const [createPostForm, setCreatePostForm] = useState(false);
   const [error, setError] = useState("");
   const [showFileUploadModal, setShowFileUploadModal] = useState(false);
+  const [showBannerUploadModal, setShowBannerUploadModal] = useState(false);
   const titleRef = useRef();
   const contentRef = useRef();
   const urlRef = useRef();
@@ -89,6 +91,10 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
     setShowFileUploadModal(true);
   };
 
+  const addProfileBanner = () => {
+    setShowBannerUploadModal(true);
+  };
+
   useEffect(() => {
     if (userData.userId) {
       getUserInfo();
@@ -97,11 +103,32 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
 
   return (
     <div className={styles.ProfileDisplay}>
-      <img
-        src="https://hdrphotos.com/wp-content/uploads/2021/03/Spirit-Island-4k-RGB-2.jpg"
-        alt="profile banner"
-        className={styles.profileBanner}
-      />
+      {userData.profile_banner_url === "" ? (
+        <img
+          className={styles.profileBanner}
+          src="https://hdrphotos.com/wp-content/uploads/2021/03/Spirit-Island-4k-RGB-2.jpg"
+          alt="profile banner"
+          onClick={addProfileBanner}
+        />
+      ) : (
+        <img
+          className={styles.profileBanner}
+          src={userData.profile_banner_url}
+          alt="profile banner"
+          onClick={addProfileBanner}
+        />
+      )}
+
+      {showBannerUploadModal && (
+        <div>
+          <BannerUploadModal
+            setShowBannerUploadModal={setShowBannerUploadModal}
+            userData={userData}
+            setUserData={setUserData}
+          ></BannerUploadModal>
+        </div>
+      )}
+
       {userData.profile_picture_url === "" ? (
         <img
           className={styles.profilePicture}
