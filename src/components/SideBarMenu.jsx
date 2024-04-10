@@ -73,6 +73,16 @@ export default function TemporaryDrawer(props) {
       <Divider />
       <List>
         <ListItem disablePadding>
+          <ListItemButton component={Link} to="/FriendsPage">
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Friends"} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <List>
+        <ListItem disablePadding>
           <ListItemButton component={Link} to="/" onClick={handleLogOutClick}>
             <ListItemIcon>
               <MailIcon />

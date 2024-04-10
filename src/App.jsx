@@ -7,6 +7,7 @@ import AdminPage from "./pages/AdminPage";
 import PostPage from "./pages/PostPage";
 import SearchUsersPage from "./pages/SearchUsersPage";
 import UserCardsDisplay from "./components/UserCardsDisplay";
+import FriendsPage from "./pages/FriendsPage";
 
 function App() {
   const [accessToken, setAccessToken] = useState("");
@@ -60,6 +61,10 @@ function App() {
           <Route
             path="/SearchUsersPage"
             element={isLoggedIn ? <SearchUsersPage /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/FriendsPage"
+            element={isLoggedIn ? <FriendsPage /> : <Navigate to="/" />}
           />
           {/* <Route>
             <UserCardsDisplay user={{ username: "" }} />

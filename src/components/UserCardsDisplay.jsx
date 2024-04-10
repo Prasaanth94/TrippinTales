@@ -61,9 +61,13 @@ const UserCardsDisplay = () => {
       {usersResult &&
         usersResult.length > 0 &&
         usersResult.map((user, index) => (
-          <div key={index} className={styles["searched-user-card"]}>
+          <div
+            key={index}
+            onClick={() => handleProfileNavi(user._id)}
+            className={styles["searched-user-card"]}
+          >
             <img src={user.image} alt={`Profile of ${user.username}`} />
-            <h3 onClick={() => handleProfileNavi(user._id)}>{user.username}</h3>
+            <h3>{user.username}</h3>
             <h5>
               {user.first_name} {user.last_name}
             </h5>
