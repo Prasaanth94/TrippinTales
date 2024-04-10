@@ -7,6 +7,7 @@ const UsersSchema = new mongoose.Schema(
     first_name: { type: String, default: "" },
     last_name: { type: String, default: "" },
     profile_picture_url: { type: String, default: "" }, // Store S3 URL of the profile picture
+    profile_banner_url: { type: String, default: "" },
     email: { type: String, required: true },
     phone: { type: String, default: "" },
     birthdate: { type: Date, default: "" },

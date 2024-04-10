@@ -15,6 +15,7 @@ const getAllUsers = async (req, res) => {
         first_name: temp.first_name,
         last_name: temp.last_name,
         profile_picture_url: temp.profile_picture_url,
+        profile_banner_url: temp.profile_banner_url,
         email: temp.email,
         phone: temp.phone,
         birthdate: temp.birthdate,
