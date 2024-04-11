@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  getUserInfo,
+} from "react";
 import styles from "./ProfileDisplay.module.css";
 import useFetch from "../hooks/useFetch";
 import UserContext from "../context/user";
@@ -67,7 +73,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
   // Construct the S3 URL to upload the file
   const imageUrl = () => {
     return (
-      "https://trippintalesdp.s3.ap-southeast-1.amazonaws.com/" +
+      "https://trippintalesdp.s3.ap-southeast-1.am  azonaws.com/" +
       selectedFile.name
     );
   };
@@ -203,12 +209,17 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
           <div className={styles.menuStyle}>
             <h3 onClick={handleAboutMe}>About me</h3>
             <h3 onClick={handleTales}>My tales</h3>
-            {id === userCtx.userId ? (
-              <h3 onClick={handleCreatePost}>Pen a Tale</h3>
-            ) : (
+            {id !== userCtx.userId ? (
               <div>
                 <FollowButton></FollowButton>
+                <FollowButton
+                  loggedInUserId={userCtx.userId}
+                  userId={id}
+                  getUserInfo={getUserInfo}
+                ></FollowButton>
               </div>
+            ) : (
+              <h3 onClick={handleCreatePost}>Pen a Tale</h3>
             )}
           </div>
         </div>
