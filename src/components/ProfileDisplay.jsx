@@ -73,7 +73,7 @@ const ProfileDisplay = ({ userData, setUserData, id }) => {
   // Construct the S3 URL to upload the file
   const imageUrl = () => {
     return (
-      "https://trippintalesdp.s3.ap-southeast-1.am  azonaws.com/" +
+      "https://trippintalesdp.s3.ap-southeast-1.amazonaws.com/" +
       selectedFile.name
     );
   };
