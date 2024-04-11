@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import SideBarMenu from "../components/SideBarMenu";
 import CommentDisplay from "../components/CommentDisplay";
 import UpdatePostModal from "../components/UpdatePostModal";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./PostPage.module.css";
 import Avatar from "@mui/material/Avatar";
@@ -21,6 +22,7 @@ const PostPage = () => {
   const fetchData = useFetch();
   const { id } = useParams();
   const commentRef = useRef();
+  const navigate = useNavigate();
 
   const fetchPostUsername = async (userId) => {
     const userRes = await fetchData(
@@ -68,7 +70,7 @@ const PostPage = () => {
 
     if (res.ok) {
       alert("Post deleted");
-      window.location.href = "/ProfilePage";
+      navigate("/ProfilePage");
     } else {
       alert(JSON.stringify(res.data));
       console.log(res.data);
