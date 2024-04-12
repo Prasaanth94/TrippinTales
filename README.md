@@ -47,8 +47,9 @@ Trippin' Tales revolutionizes the travel experience by addressing the common pai
 ### Backend Setup
 
 1. Run `npm init -y` to initialize the project and create a package.json file
-2. Install all the packages and dependencies `npm i dotenv express-validator mongoose jsonwebtoken bcrypt uuid cors helmet express-rate-limit`
-3. Create your .env file with the following variables:
+2. Run `npm i -D nodemon` to allow automatic restart for development purposes
+3. Install all the packages and dependencies `npm i dotenv express express-validator mongoose jsonwebtoken bcrypt uuid cors helmet express-rate-limit`
+4. Create your .env file with the following variables:
 
 ```
 PORT=5001
@@ -60,11 +61,12 @@ REFRESH_SECRET=<YOUR_REFRESH_SECRET>
 ### Frontend Setup
 
 1. Run `npm i` to install all the dependencies
-2. Run `npm i react-router-dom` to install react-router-dom
-3. Run `npm i @mui/material @emotion/react @emotion/styled` to install Material UI
-4. Run `npm i @mui/icons-material` to install Material UI icons
-5. Run `npm i jwt-decode` to install jwt-decode
-6. Create your .env file with the following variables:
+2. Run `npm i vite` to install vite
+3. Run `npm i react-router-dom` to install react-router-dom
+4. Run `npm i @mui/material @emotion/react @emotion/styled` to install Material UI
+5. Run `npm i @mui/icons-material` to install Material UI icons
+6. Run `npm i jwt-decode` to install jwt-decode
+7. Create your .env file with the following variables:
 
 `VITE_SERVER=http://localhost:5001`
 
