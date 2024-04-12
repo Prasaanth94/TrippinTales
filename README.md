@@ -12,24 +12,25 @@ Trippin' Tales revolutionizes the travel experience by addressing the common pai
 
 # Screenshot
 
-### Landing Page 
-<img src="./public/trippintales_login.gif">
+### Landing Page
 
-### Profile Page 
-<img src="./public/profile.png">
+<img src="./public/landingpage.gif">
 
-### Pen a Tale
-<img src="./public/create_post.png">
+### Profile Page
+
+<img src="./public/profilepage.gif">
 
 ### Post Page
-<img src="./public/post.png">
-<img src="./public/comments.png">
+
+<img src="./public/postpage.gif">
 
 ### View user's following and followers
-<img src="./public/following.png">
+
+<img src="./public/followfeature.gif">
 
 ### Search user by username
-<img src="./public/user_search.png">
+
+<img src="./public/usersearch.gif">
 
 # Technologies Used
 
