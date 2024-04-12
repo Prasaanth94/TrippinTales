@@ -70,7 +70,7 @@ REFRESH_SECRET=<YOUR_REFRESH_SECRET>
 
 # Next Steps
 
-1. Search input and button on Navbar
-2. 'Wall page' to view posts of others the user follows
-3. CSS touchups
-4. Like/Favourite feature + page which can serve as a reference or bookmark
+- Search input and button on Navbar
+- 'Wall page' to view posts of others the user follows
+- CSS touchups
+- Like/Favourite feature + page which can serve as a reference or bookmark
