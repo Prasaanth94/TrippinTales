@@ -34,6 +34,8 @@ Trippin' Tales revolutionizes the travel experience by addressing the common pai
 
 # Technologies Used
 
+-This app was built on MERN STACK
+
 - React
 - JSX
 - CSS
@@ -41,6 +43,9 @@ Trippin' Tales revolutionizes the travel experience by addressing the common pai
 - Material UI
 - Bootstrap
 - AWS S3
+- MongoDB
+- Mongoose
+- expressJs
 
 # Getting Started
 
